@@ -7,8 +7,7 @@ import {
 } from 'react-native'
 import SearchIconAndStatusColor from './SearchIconAndStatusColor';
 
-import { globalStyles } from '../config/globalStyles'
-
+import { globalStyles, primaryColor } from '../config/globalStyles'
 import ImagePicker from 'react-native-image-picker';
 
 class Settings extends React.Component {
@@ -20,7 +19,7 @@ class Settings extends React.Component {
 
   state = {
     image: '',
-    text: ''
+    text: 'Test text'
   }
 
   pickImage = () => {
@@ -28,24 +27,60 @@ class Settings extends React.Component {
       title: 'Capture text from an image',
       cameraType: 'back',
       mediaType: 'photo',
+      takePhotoButtonTitle: 'Take a photo of text',
+      chooseFromLibraryButtonTitle: 'Pick an image of text',
       quality: 1,
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-      alert('Response = ', response)
-
       if (response.didCancel) {
-        alert('User cancelled image picker')
       } else if (response.error) {
-        alert('ImagePicker Error: ', response.error)
       } else {
-        const source = response.uri
-        alert(source)
+        this.imageToText(response.data)
         this.setState({
-          source
+          source: response.uri
         });
       }
     })
+  }
+
+  imageToText = imageBase64 => {
+    const apiKey = process.env.CLOUD_API
+    const request = JSON.stringify({
+      "requests": [
+        { 
+          "image": {
+            "content": imageBase64
+          },
+          "features": [
+            { "type": "DOCUMENT_TEXT_DETECTION" }
+          ]
+        },
+        {
+          "image": {
+            "content": imageBase64
+          },
+          "features": [
+            { "type": "TEXT_DETECTION" }
+          ]
+        }
+      ]
+    })
+    fetch('https://vision.googleapis.com/v1/images:annotate?key=' + apiKey, 
+      {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: request
+      }).then(resp => resp.json())
+        .then(resp => {
+          resp.responses.forEach(response => {
+            if (response.fullTextAnnotation)
+            return this.setState({
+              text: response.fullTextAnnotation.text
+            })
+          })
+          this.setState({text: 'Could not decipher'})
+        })
   }
 
   render() {
@@ -54,7 +89,12 @@ class Settings extends React.Component {
         <Text style={globalStyles.header}>This is the Settings Page</Text>
         <Image source={{uri: `${this.state.source}`}} style={{width:300, height: 300}}/>
         <Text>{this.state.text}</Text>
-        <Button onPress={this.pickImage}>Pick image</Button>
+        <Button buttonText={"Test OCR"}
+          onPress={this.pickImage}
+          buttonColor={primaryColor}
+          >
+            Pick image
+          </Button>
       </View>
     )
   }
