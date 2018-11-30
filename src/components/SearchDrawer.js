@@ -68,7 +68,7 @@ class SearchDrawer extends React.Component {
       source,
       tag
     })
-    this.props.navigation.navigate('HomeStack')
+    this.props.navigation.navigate('Home')
     this.clearAndClose()
   }
 
