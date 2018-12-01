@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import {
   Alert,
   Dimensions,
+  Share,
+  StyleSheet,
   Text,
   View,
-  StyleSheet,
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 
@@ -25,32 +26,25 @@ class HomePage extends React.Component {
   })
 
   state = {
-    category: '',
-    author: '',
     modalVisible: false,
-    selectedIndex: 0
   }
 
-  confirmDelete = () => {
-    let entry = this.props.results[this.state.selectedIndex]
+  confirmDelete = entry => {
+    // let entry = this.props.results[this.state.selectedIndex]
     Alert.alert(
       'Delete entry permanently',
       'Are you sure?',
       [
-        { 
-          text: 'No, cancel', 
+        {
+          text: 'No, cancel',
         },
-        { 
-          text: 'Yes, delete', 
+        {
+          text: 'Yes, delete',
           onPress: () => this.deleteEntry(entry),
           style: 'destructive'
         }
       ],
     )
-  }
-
-  setSelected = selectedIndex => {
-    this.setState({selectedIndex})
   }
 
   deleteEntry = (entry)  => {
@@ -64,9 +58,20 @@ class HomePage extends React.Component {
     this.props.updateResults(results)
   }
 
-  editEntry = () => {
-    let entry = this.props.results[this.state.selectedIndex]
+  editEntry = entry  => {
     this.props.navigation.navigate('AddOrEditEntry', {entry})
+  }
+
+  shareEntry = entry => {
+    let message = `"${entry.content}" - ${entry.author.name}`
+    message += entry.source ? ` (${entry.source.name})` : null
+    Share.share({
+      message,
+      title: "Check out this quote"
+    }, {
+      subject: "Check out this quote",
+      dialogTitle: "Share entry"
+    })
   }
 
   browseEntries = ({author, category}) => {
@@ -119,15 +124,15 @@ class HomePage extends React.Component {
             renderPagination={this.renderPagination}
             showsButtons={false}
             key={this.props.results.length}
-            onIndexChanged={this.setSelected}
-            // nextButton={<Text style={styles.navButtons}>›</Text>}
-            // prevButton={<Text style={styles.navButtons}>‹</Text>}
+            nextButton={<Text style={styles.navButtons}>›</Text>}
+            prevButton={<Text style={styles.navButtons}>‹</Text>}
           >
             {this.props.results.map(entry =>
               <EntryCard
                 entry={entry}
                 confirmDelete={this.confirmDelete}
                 editEntry={this.editEntry}
+                shareEntry={this.shareEntry}
                 navigation={this.props.navigation}
                 key={entry.id}
               />
@@ -155,7 +160,7 @@ const styles = StyleSheet.create({
   }, 
   navButtons: {
     fontSize: 50,
-    color: primaryColor
+    color: primaryColor,
   },
   paginationStyle: {
     position: 'absolute',

@@ -14,11 +14,15 @@ import {
 
 import moment from 'moment'
 
-import { bodyTextColor, outlineColor, deleteColor, primaryColor, cardBackgroundColor, secondaryColor } from '../config/globalStyles'
+import { 
+  bodyTextColor, 
+  outlineColor, 
+  deleteColor 
+} from '../config/globalStyles'
 
 import whitePaper from '../../assets/white-oxford.jpg'
 
-export default EntryCard = ({entry, confirmDelete, editEntry}) => {
+export default EntryCard = ({entry, confirmDelete, editEntry, shareEntry}) => {
 
   return (
     <Card style={styles.card}>
@@ -34,26 +38,26 @@ export default EntryCard = ({entry, confirmDelete, editEntry}) => {
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity 
               activeOpacity={0.5}
-              onPress={confirmDelete}>
+              onPress={() => confirmDelete(entry)}>
               <Icon
                 ios={"trash"}
                 android={"trash"}
                 type="FontAwesome"
                 style={{
                   color: deleteColor,
-                  fontSize: 24
+                  fontSize: 25
                 }} />
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.5}
-              onPress={editEntry}>
+              onPress={() => editEntry(entry)}>
               <Icon
                 ios={"pencil"}
                 android={"pencil"}
                 type="FontAwesome"
                 style={{
                   color: bodyTextColor,
-                  fontSize: 24,
+                  fontSize: 25,
                   marginLeft: 15
                 }} />
             </TouchableOpacity>
@@ -96,27 +100,50 @@ export default EntryCard = ({entry, confirmDelete, editEntry}) => {
 
 
       <View style={styles.cardFooter}>
-        {entry.reference &&
-          <Text note style={{marginBottom: 5}}>
-            {entry.reference}
-          </Text>
-        }
-        <ScrollView>
-          <Text note style={{fontWeight: 'bold'}}>
-            {
-              entry.tags.length > 0 
-              ? 
-              'Tags: ' + entry.tags.map(tag => tag.name).join(', ')
-              :
-              null
+        <View style={{
+          flexDirection: 'row', 
+          justifyContent: 'space-between',
+          flex: 1
+        }}>
+          <View style={{width: "90%"}}>
+            {entry.reference &&
+              <Text note style={{marginBottom: 5}}>
+                {entry.reference}
+              </Text>
             }
-          </Text>
-        </ScrollView>
+            <ScrollView>
+              <Text note style={{fontWeight: 'bold'}}>
+                {
+                  entry.tags.length > 0 
+                  ? 
+                  'Tags: ' + entry.tags.map(tag => tag.name).join(', ')
+                  :
+                  null
+                }
+              </Text>
+            </ScrollView>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() => shareEntry(entry)}
+            >
+            <Icon
+              ios={"share-square"}
+              android={"share-square"}
+              type="FontAwesome"
+              style={{
+                color: bodyTextColor,
+                fontSize: 26,
+                marginLeft: 5
+              }} />
+          </TouchableOpacity>
+        </View>
         <View style={{width: "100%", alignItems: 'flex-start'}}>
           <Text note style={{fontWeight: 'bold'}}>
             Date: {moment(entry.date || entry.dateCreated).format('DD-MM-YYYY')}
           </Text>
         </View>
+      
       </View>
 
     </Card>

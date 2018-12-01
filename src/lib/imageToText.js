@@ -25,7 +25,7 @@ export default imageToText = () => {
   })
 
   function textDetection(imageBase64) {
-    const apiKey = "AIzaSyDN7UZtVmhSDRswmaUSzd4O9aCku5bRn0o"
+    const apiKey = ""
     const request = JSON.stringify({
       "requests": [
         { 

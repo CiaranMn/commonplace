@@ -6,7 +6,7 @@ const greenTheme = {
   bodyBackgroundColor: '#ececec',
   outlineColor: "#cbcbcb",
   bodyTextColor: "#2e696b",
-  statusBarColor: '#7DD5D8',
+  statusBarColor: '#4bafb4',
   statusBarText: "light-content",
   deleteColor: "#ff6666"
 }
