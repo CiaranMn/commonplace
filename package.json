@@ -20,7 +20,7 @@
     "react-native-tags": "^1.7.0",
     "react-navigation": "^3.0.0",
     "react-redux": "^5.1.1",
-    "realm": "^2.20.0",
+    "realm": "^2.20.1",
     "redux": "^4.0.1"
   },
   "devDependencies": {

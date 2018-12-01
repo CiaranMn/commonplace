@@ -5,6 +5,8 @@ import {
   Text,
   View
 } from 'react-native'
+
+import {Toast} from 'native-base'
 import SearchIconAndStatusColor from './SearchIconAndStatusColor';
 
 import { globalStyles, primaryColor } from '../config/globalStyles'
@@ -38,19 +40,19 @@ class Settings extends React.Component {
       } else {
         this.imageToText(response.data)
         this.setState({
-          source: response.uri
+          source: response.uri,
         });
       }
     })
   }
 
   imageToText = imageBase64 => {
-    const apiKey = process.env.CLOUD_API
+    const apiKey = "AIzaSyDN7UZtVmhSDRswmaUSzd4O9aCku5bRn0o"
     const request = JSON.stringify({
       "requests": [
         { 
           "image": {
-            "content": imageBase64
+            "content": `${imageBase64}`
           },
           "features": [
             { "type": "DOCUMENT_TEXT_DETECTION" }
@@ -58,7 +60,7 @@ class Settings extends React.Component {
         },
         {
           "image": {
-            "content": imageBase64
+            "content": `${imageBase64}`
           },
           "features": [
             { "type": "TEXT_DETECTION" }
@@ -73,14 +75,38 @@ class Settings extends React.Component {
         body: request
       }).then(resp => resp.json())
         .then(resp => {
-          resp.responses.forEach(response => {
-            if (response.fullTextAnnotation)
-            return this.setState({
-              text: response.fullTextAnnotation.text
+          if (resp.responses.every(response => 
+            Object.keys(response).length === 0 
+            || 
+            !!response.error
+          )) {
+            Toast.show({
+              text: 'Could not read text from image.',
+              buttonText: "Okay",
+              type: "danger",
+              duration: 2000,
+              position: "top",
             })
-          })
-          this.setState({text: 'Could not decipher'})
+          }
+          else { 
+            resp["responses"].forEach(response => {
+              if (response.fullTextAnnotation) {
+                this.setState({
+                  text: response.fullTextAnnotation.text.slice(0,100)
+                })
+              }
+            })
+          }
         })
+          .catch(err =>
+            Toast.show({
+            text: 'Could not connect to image recognition server.',
+            buttonText: "Okay",
+            type: "danger",
+            duration: 2000,
+            position: "top",
+           })
+          )
   }
 
   render() {
