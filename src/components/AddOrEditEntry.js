@@ -1,22 +1,23 @@
 import React from 'react'
 import {
-  KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
   TextInput,
+  TouchableOpacity,
   View
 } from 'react-native'
 import {
   Form,
+  Icon,
   Item,
   Label,
   Textarea,
-  Toast
 } from 'native-base'
 
 import {connect} from 'react-redux'
 import moment from 'moment'
 import Tags from 'react-native-tags'
+import ImagePicker from 'react-native-image-picker'
 
 import SearchIconAndStatusColor from './SearchIconAndStatusColor';
 import DatePickerInput from './DatePicker'
@@ -24,11 +25,14 @@ import FieldPicker from './FieldPicker'
 import NewInput from './NewInput'
 import Button from './Button'
 
+import imageToText from '../lib/imageToText'
+import showToast from '../lib/showToast'
 import { Entry } from '../models/realm'
+
 import {
   globalStyles, 
   primaryColor, 
-  secondaryColor,
+  bodyTextColor,
   deleteColor
 } from '../config/globalStyles'
 
@@ -93,13 +97,7 @@ class AddOrEditEntry extends React.Component {
     } = this.state
     if (content.length === 0) {
       this.scrollToTop()
-      return Toast.show({
-        text: "Entry needs content at least",
-        buttonText: "OK!",
-        type: 'danger',
-        duration: 2000,
-        position: "top"
-      })
+      showToast("Entry needs content at least", "danger")
     }
     Entry.createOrUpdateWithAlerts({
       content,
@@ -141,26 +139,88 @@ class AddOrEditEntry extends React.Component {
     })
   }
 
+  pickImage = () => {
+    const options = {
+      title: 'Capture text from an image',
+      cameraType: 'back',
+      mediaType: 'photo',
+      takePhotoButtonTitle: 'Take a photo of text',
+      chooseFromLibraryButtonTitle: 'Pick an image of text',
+      quality: 1,
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.didCancel) {
+      } else if (response.error) {
+      } else {
+        showToast("Processing image - why not fill in other fields while you wait?", "default", 10000)
+        imageToText(response.data)
+          .then(content => {
+            showToast("Image processing complete", "success")
+            this.setState({ content })
+          })
+          .catch(err =>
+            showToast(err || "Could not connect to server...", "danger")
+          )
+      }
+    })
+  }
+
   render() {
 
     return (
 
       <ScrollView 
         ref="_scrollView"
-        contentContainerStyle={[styles.home, globalStyles.body]}
+        contentContainerStyle={[
+          styles.home, 
+          globalStyles.body
+          ]}
         >
         <Form style={styles.form}>
-          <Item stackedLabel style={globalStyles.formItem}>
-            <Label style={[globalStyles.label, {marginBottom: 6}]}>
-              Content
-            </Label>
+
+          <View style={styles.contentContainer}>
+            <View style={styles.contentHeader}>
+              <View style={{ width: "80%" }}>
+                <Label style={globalStyles.label}>
+                  Content
+                </Label>
+              </View>
+              <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => alert('voice')}>
+                  <Icon
+                    ios={"microphone"}
+                    android={"microphone"}
+                    type={"FontAwesome"}
+                    style={{
+                      color: bodyTextColor,
+                      fontSize: 24
+                    }} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={this.pickImage}>
+                  <Icon
+                    ios={"camera"}
+                    android={"camera"}
+                    type={"FontAwesome"}
+                    style={{
+                      color: bodyTextColor,
+                      fontSize: 24,
+                      marginLeft: 18
+                    }} />
+                </TouchableOpacity>
+              </View>
+            </View>
             <Textarea 
               rowSpan={6}
               style={[globalStyles.input, styles.marginBottom, {width: '100%'}]}
               value={this.state.content}
               onChangeText={content => this.setState({content})}
             />
-          </Item>
+          </View>
 
           <View style={styles.marginBottom}>
             <Item style={[globalStyles.formItem, globalStyles.alignRight]}>
@@ -304,6 +364,20 @@ const styles = StyleSheet.create({
     width: "80%",
     alignItems: 'center',
     justifyContent: 'flex-end'
+  },
+  contentContainer: {
+    flex: 1,
+    width: "100%",
+  },
+  contentHeader: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    paddingTop: 15,
+    paddingBottom: 5
   },
   marginBottom: {
     marginBottom: 20
