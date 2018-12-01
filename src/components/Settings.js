@@ -7,10 +7,10 @@ import {
 } from 'react-native'
 
 import {Toast} from 'native-base'
-import SearchIconAndStatusColor from './SearchIconAndStatusColor';
+import SearchIconAndStatusColor from './SearchIconAndStatusColor'
 
 import { globalStyles, primaryColor } from '../config/globalStyles'
-import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-picker'
 
 class Settings extends React.Component {
 
@@ -47,7 +47,7 @@ class Settings extends React.Component {
   }
 
   imageToText = imageBase64 => {
-    const apiKey = "AIzaSyDN7UZtVmhSDRswmaUSzd4O9aCku5bRn0o"
+    const apiKey = ""
     const request = JSON.stringify({
       "requests": [
         { 

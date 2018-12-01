@@ -1,7 +1,7 @@
 import Realm from 'realm'
 import cuid from 'cuid'
 import {store} from '../../App'
-import {Toast} from 'native-base'
+import showToast from '../lib/showToast'
 
 // import Entry from './Entry'
 // import Author from './Author'
@@ -96,6 +96,7 @@ export class Entry extends Realm.Object {
         dateModified:
           now
       }, !!update)
+
       // CHECK TAGS FOR DELETION - ADD SOURCE, AUTHOR, CATEGORY. ALLOW SETTINGS
       if (object.tags) {
         entry.tags = object.tags.map(tag => {
@@ -109,26 +110,14 @@ export class Entry extends Realm.Object {
   static createOrUpdateWithAlerts(object, update=false) {
     try {
       this.createOrUpdate(object, update)
-      Toast.show({
-        text: update ? "Entry updated" : "Entry added",
-        buttonText: "Okay",
-        type: "success",
-        duration: 2000,
-        position: "top",
-      })
+      showToast(update ? "Entry updated" : "Entry added", "success")
       store.dispatch({
         type: "ADD_RESULTS",
         results: Entry.getEntries().slice(-1)
       })
       this.updateLists()
     } catch(error) {
-      Toast.show({
-        text: `${error}`,
-        buttonText: "Okay",
-        type: "danger",
-        duration: 2000,
-        position: "top",
-      })
+      showToast(`${error}`, "danger")
     }
   }
 
@@ -146,13 +135,10 @@ export class Entry extends Realm.Object {
       // CHECK TAGS, SOURCE, AUTHOR FOR DELETION
 
       realm.delete(realm.objectForPrimaryKey('Entry', entry.id))
-      Toast.show({
-        text: authorDeleted ? "Entry and author deleted" : "Entry deleted",
-        buttonText: "Okay",
-        type: "danger",
-        duration: 2000,
-        position: "top",
-      })
+      showToast(
+        authorDeleted ? "Entry and author deleted" : "Entry deleted",
+         "danger"
+        )
       this.updateLists()
     })
   }

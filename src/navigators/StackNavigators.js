@@ -6,7 +6,6 @@ import HomePage from '../components/HomePage'
 import Settings from '../components/Settings'
 import AddOrEditEntry from '../components/AddOrEditEntry'
 import SearchResults from '../components/SearchResults'
-import ViewEntry from '../components/ViewEntry'
 
 import { primaryColor, secondaryColor } from '../config/globalStyles'
 
@@ -37,8 +36,7 @@ export const HomeStack = createStackNavigator(
 
 export const AddStack = createStackNavigator(
   {
-    AddOrEditEntry,
-    ViewEntry
+    AddOrEditEntry
   }, {
     initialRouteName: 'AddOrEditEntry',
     defaultNavigationOptions
