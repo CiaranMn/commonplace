@@ -92,7 +92,7 @@ class AddOrEditEntry extends React.Component {
     } = this.state
     if (content.length === 0) {
       this.scrollToTop()
-      showToast("Entry needs content at least", "danger")
+      return showToast("Entry needs content at least", "danger")
     }
     Entry.createOrUpdateWithAlerts({
       content,
@@ -287,6 +287,7 @@ class AddOrEditEntry extends React.Component {
             />
             <NewInput
               switchOn={this.state.newSource}
+              bodyTextColor={bodyTextColor}
               onSwitchValueChange={value => this.setState({ newSource: value })}
               textValue={this.state.newSourceText}
               onTextValueChange={value =>
