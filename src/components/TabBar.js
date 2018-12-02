@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {BottomTabBar} from 'react-navigation'
 
-const TabBarComponent = (props) => {
+const TabBar = (props) => {
 
   const {primaryColor, secondaryColor} = props.theme
 
@@ -16,5 +16,5 @@ const TabBarComponent = (props) => {
 
 mapStateToProps = ({ theme }) => ({ theme })
 
-export default connect(mapStateToProps)(TabBarComponent)
+export default connect(mapStateToProps)(TabBar)
 

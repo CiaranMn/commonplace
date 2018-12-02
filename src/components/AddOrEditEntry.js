@@ -35,11 +35,19 @@ class AddOrEditEntry extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam('entry', false) ? 'Edit Entry' : 'Add Entry',
-    headerRight: <SearchIconAndStatusColor navigation={navigation} />
+    headerRight: <SearchIconAndStatusColor navigation={navigation} />,
+    headerStyle: {
+      backgroundColor: navigation.getParam('primaryColor', '#3C8C90'),
+    },
+    headerTintColor: navigation.getParam('secondaryColor', '#fff')
   })
 
   constructor(props) {
     super(props)
+    this.props.navigation.setParams({
+      primaryColor: this.props.theme.primaryColor,
+      secondaryColor: this.props.theme.secondaryColor
+    })
     const entry = this.props.navigation.getParam('entry', false)
     this.state = {
       content: entry.content || '',
@@ -287,7 +295,6 @@ class AddOrEditEntry extends React.Component {
             />
             <NewInput
               switchOn={this.state.newSource}
-              bodyTextColor={bodyTextColor}
               onSwitchValueChange={value => this.setState({ newSource: value })}
               textValue={this.state.newSourceText}
               onTextValueChange={value =>

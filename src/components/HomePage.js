@@ -21,11 +21,22 @@ class HomePage extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
     title: 'Commonplace',
-    headerRight: <SearchIconAndStatusColor navigation={navigation} />
+    headerRight: <SearchIconAndStatusColor navigation={navigation} />,
+    headerStyle: { 
+      backgroundColor: navigation.getParam('primaryColor', '#3C8C90'),
+     },
+    headerTintColor: navigation.getParam('secondaryColor', '#fff')
   })
-
   state = {
     modalVisible: false,
+  }
+
+  constructor(props) {
+    super(props)
+    this.props.navigation.setParams({
+      primaryColor: this.props.theme.primaryColor,
+      secondaryColor: this.props.theme.secondaryColor
+    })
   }
 
   confirmDelete = entry => {

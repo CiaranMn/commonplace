@@ -6,16 +6,12 @@ import HomePage from '../components/HomePage'
 import Settings from '../components/Settings'
 import AddOrEditEntry from '../components/AddOrEditEntry'
 
-import { primaryColor, secondaryColor } from '../config/globalStyles'
-
 export const headerHeight = Math.min(Dimensions.get('window').height * 0.7, 50)
 
 const defaultNavigationOptions = {
   headerStyle: {
-    backgroundColor: primaryColor,
     height: headerHeight
   },
-  headerTintColor: secondaryColor,
   headerTitleStyle: {
     fontSize: 21
   }

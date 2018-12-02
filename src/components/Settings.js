@@ -13,12 +13,24 @@ class Settings extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Settings',
-    headerRight: <SearchIconAndStatusColor navigation={navigation} />
+    headerRight: <SearchIconAndStatusColor navigation={navigation} />,
+    headerStyle: {
+      backgroundColor: navigation.getParam('primaryColor', '#3C8C90'),
+    },
+    headerTintColor: navigation.getParam('secondaryColor', '#fff')
   })
-
+  
   state = {
     image: '',
     text: 'Test text'
+  }
+
+  constructor(props) {
+    super(props)
+    this.props.navigation.setParams({
+      primaryColor: this.props.theme.primaryColor,
+      secondaryColor: this.props.theme.secondaryColor
+    })
   }
 
   render() {

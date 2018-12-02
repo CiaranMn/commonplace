@@ -4,7 +4,7 @@ import { Dimensions, TouchableOpacity } from 'react-native'
 import { createBottomTabNavigator } from 'react-navigation'
 
 import { HomeStack, AddStack, SettingsStack } from './StackNavigators'
-import TabBarComponent from '../components/TabBarComponent'
+import TabBar from '../components/TabBar'
 
 import { primaryColor, secondaryColor, outlineColor } from '../config/globalStyles'
 
@@ -38,7 +38,7 @@ export const TabNavigator = createBottomTabNavigator({
       }
     }),
     tabBarComponent: props =>
-      <TabBarComponent {...props} 
+      <TabBar {...props} 
         showLabel={false}
         style={{
           height: footerHeight,
