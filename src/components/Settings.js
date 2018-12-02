@@ -1,11 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {
+  AsyncStorage,
   Image,
   StyleSheet,
   Text,
   View
 } from 'react-native'
+
 import {NavigationActions} from 'react-navigation'
 
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
@@ -31,13 +33,21 @@ class Settings extends React.Component {
     this.updateHeaderTheme()
   }
 
-
   updateHeaderTheme = () => {
     this.props.navigation.setParams({
       primaryColor: this.props.theme.primaryColor,
       secondaryColor: this.props.theme.secondaryColor,
       statusBarColor: this.props.theme.statusBarColor
     })
+  }
+
+  changeTheme = theme => {
+    this.props.changeTheme(theme)
+    // try {
+    //   await AsyncStorage.setItem('theme', JSON.stringify(theme))
+    // } catch (err) {
+    //   alert(err.message)
+    // }
   }
 
   componentDidUpdate(prevProps) {
@@ -51,7 +61,7 @@ class Settings extends React.Component {
     for (let theme in themes) {
       buttons.push(
         <Button 
-          onPress={() => this.props.changeTheme(themes[theme])}
+          onPress={() => this.changeTheme(themes[theme])}
           buttonColor={themes[theme].primaryColor}
           buttonText={theme}
           key={theme}

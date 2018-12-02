@@ -2,6 +2,7 @@ import React from 'react';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { createAppContainer } from 'react-navigation'
+import { AsyncStorage } from 'react-native'
 import { Root } from 'native-base'
 
 import DrawerNavigator from './src/navigators/DrawerNavigator'
@@ -10,6 +11,17 @@ import {Entry, Author, Category, Source, Tag} from './src/models/realm'
 
 // N.B Seeds will wipe existing database!
 require('./src/db/seeds')
+
+const theme = async () => {
+  let theme = undefined
+  try {
+    theme = await AsyncStorage.getItem('theme') || undefined
+    if (theme) { theme = JSON.parse(theme) }
+  } catch (err) {
+    alert(err.message)
+  }
+  return theme
+}
 
 const authors = Author.getAuthors()
 const categories = Category.getCategories()
@@ -27,7 +39,8 @@ export const store = createStore(
     query: {},
     results,
     sources, 
-    tags
+    tags,
+    theme
   } 
 )
 
