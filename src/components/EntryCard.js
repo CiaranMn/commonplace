@@ -4,6 +4,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  StyleSheet,
   View
 } from 'react-native'
 import {
@@ -14,15 +15,18 @@ import {
 
 import moment from 'moment'
 
-import { 
-  bodyTextColor, 
-  outlineColor, 
-  deleteColor 
-} from '../config/globalStyles'
-
 import whitePaper from '../../assets/white-oxford.jpg'
+import { borderColor } from '../config/globalStyles'
 
-export default EntryCard = ({entry, confirmDelete, editEntry, shareEntry}) => {
+export default EntryCard = ({
+  entry, 
+  confirmDelete, 
+  editEntry, 
+  shareEntry,
+  theme
+}) => {
+
+  const { bodyTextColor, deleteColor } = theme
 
   return (
     <Card style={styles.card}>
@@ -150,7 +154,7 @@ export default EntryCard = ({entry, confirmDelete, editEntry, shareEntry}) => {
   )
 }
 
-const styles = {
+const styles = StyleSheet.create({
   card: {
     flex: 1,
     width: "90%",
@@ -179,10 +183,7 @@ const styles = {
     borderRightWidth: 1.5,
     borderTopWidth: 1,
     borderLeftWidth: 1,
-    borderBottomColor: outlineColor,
-    borderRightColor: outlineColor,
-    borderLeftColor: outlineColor,
-    borderTopColor: outlineColor,
+    borderColor,
     borderRadius: 12
   },
   cardFooter: {
@@ -193,4 +194,4 @@ const styles = {
     paddingHorizontal: 20,
     paddingVertical: 10
   }
-}
+})

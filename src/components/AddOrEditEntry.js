@@ -29,12 +29,7 @@ import imageToText from '../lib/imageToText'
 import showToast from '../lib/showToast'
 import { Entry } from '../models/realm'
 
-import {
-  globalStyles, 
-  primaryColor, 
-  bodyTextColor,
-  deleteColor
-} from '../config/globalStyles'
+import {globalStyles} from '../config/globalStyles'
 
 class AddOrEditEntry extends React.Component {
 
@@ -168,13 +163,15 @@ class AddOrEditEntry extends React.Component {
 
   render() {
 
+    const {bodyTextColor, bodyBackgroundColor, deleteColor, primaryColor} = this.props.theme
+
     return (
 
       <ScrollView 
         ref="_scrollView"
         contentContainerStyle={[
-          styles.home, 
-          globalStyles.body
+            styles.home,
+           {backgroundColor: bodyBackgroundColor}
           ]}
         >
         <Form style={styles.form}>
@@ -182,7 +179,7 @@ class AddOrEditEntry extends React.Component {
           <View style={styles.contentContainer}>
             <View style={styles.contentHeader}>
               <View style={{ width: "80%" }}>
-                <Label style={globalStyles.label}>
+                <Label style={[globalStyles.label, {color: bodyTextColor}]}>
                   Content
                 </Label>
               </View>
@@ -216,7 +213,11 @@ class AddOrEditEntry extends React.Component {
             </View>
             <Textarea 
               rowSpan={6}
-              style={[globalStyles.input, styles.marginBottom, {width: '100%'}]}
+              style={[
+                 globalStyles.input,
+                 styles.marginBottom, 
+                 {width: '100%'},
+                ]}
               value={this.state.content}
               onChangeText={content => this.setState({content})}
             />
@@ -224,7 +225,7 @@ class AddOrEditEntry extends React.Component {
 
           <View style={styles.marginBottom}>
             <Item style={[globalStyles.formItem, globalStyles.alignRight]}>
-              <Label style={globalStyles.label}>
+              <Label style={[globalStyles.label, { color: bodyTextColor }]}>
                 Date
               </Label>
               <DatePickerInput 
@@ -240,10 +241,12 @@ class AddOrEditEntry extends React.Component {
               options={this.props.categories}
               selection={this.state.category}
               handleChange={category => this.setState({category})}
+              bodyTextColor={bodyTextColor}
               label
             />
             <NewInput
               switchOn={this.state.newCategory}
+              bodyTextColor={bodyTextColor}
               onSwitchValueChange={value =>
                 this.setState({ newCategory: value })}
               textValue={this.state.newCategoryText}
@@ -259,10 +262,12 @@ class AddOrEditEntry extends React.Component {
               options={this.props.authors}
               selection={this.state.author}
               handleChange={author => this.setState({author})}
+              bodyTextColor={bodyTextColor}
               label
             />
             <NewInput
               switchOn={this.state.newAuthor}
+              bodyTextColor={bodyTextColor}
               onSwitchValueChange={value => this.setState({ newAuthor: value })}
               textValue={this.state.newAuthorText}
               onTextValueChange={value =>
@@ -277,6 +282,7 @@ class AddOrEditEntry extends React.Component {
               options={this.props.sources}
               selection={this.state.source}
               handleChange={source => this.setState({source})}
+              bodyTextColor={bodyTextColor}
               label
             />
             <NewInput
@@ -293,7 +299,7 @@ class AddOrEditEntry extends React.Component {
               globalStyles.formItem, 
               globalStyles.alignRight
               ]}>
-              <Label style={globalStyles.label}>
+              <Label style={[globalStyles.label, { color: bodyTextColor }]}>
                Reference
               </Label>
               <TextInput
@@ -309,7 +315,7 @@ class AddOrEditEntry extends React.Component {
 
           <View style={styles.marginBottom}>
             <Item style={[globalStyles.formItem, globalStyles.alignRight]}>
-              <Label style={globalStyles.label}>
+              <Label style={[globalStyles.label, {color: bodyTextColor}]}>
                 Tags
               </Label>
             <Tags
@@ -319,9 +325,7 @@ class AddOrEditEntry extends React.Component {
               }}
               initialTags={this.state.tags}
               onChangeTags={tags => this.setState({tags})}
-              containerStyle={[
-                globalStyles.input
-              ]}
+              containerStyle={globalStyles.input}
               inputStyle={[
                 {backgroundColor: 'white'}
               ]}
@@ -384,11 +388,12 @@ const styles = StyleSheet.create({
   }
 })
 
-mapStateToProps = ({authors, categories, sources, tags}) => ({
+mapStateToProps = ({authors, categories, sources, tags, theme}) => ({
   authors,
   categories,
   sources,
-  tags
+  tags,
+  theme
 })
 
 export default connect(mapStateToProps)(AddOrEditEntry)

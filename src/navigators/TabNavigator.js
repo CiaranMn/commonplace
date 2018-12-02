@@ -4,12 +4,13 @@ import { Dimensions, TouchableOpacity } from 'react-native'
 import { createBottomTabNavigator } from 'react-navigation'
 
 import { HomeStack, AddStack, SettingsStack } from './StackNavigators'
+import TabBarComponent from '../components/TabBarComponent'
 
 import { primaryColor, secondaryColor, outlineColor } from '../config/globalStyles'
 
 export const footerHeight = Math.min(Dimensions.get('window').height * 0.7, 50)
 
-export default TabNavigator = createBottomTabNavigator({
+export const TabNavigator = createBottomTabNavigator({
   Home: {
     screen: HomeStack,
   },
@@ -36,18 +37,17 @@ export default TabNavigator = createBottomTabNavigator({
         />
       }
     }),
-    tabBarOptions: {
-      activeTintColor: secondaryColor,
-      activeBackgroundColor: primaryColor,
-      inactiveTintColor: primaryColor,
-      inactiveBackgroundColor: secondaryColor,
-      showLabel: false,
-      style: {
-        height: footerHeight,
-        borderColor: outlineColor,
-        borderWidth: 0,
-        borderTopWidth: 1
-      }
-    }, animationEnabled: true,
-       swipeEnabled: true,
+    tabBarComponent: props =>
+      <TabBarComponent {...props} 
+        showLabel={false}
+        style={{
+          height: footerHeight,
+          borderColor: outlineColor,
+          borderWidth: 0,
+          borderTopWidth: 1
+        }}/>,
+    animationEnabled: true,
+    swipeEnabled: true,
   })
+
+

@@ -12,7 +12,6 @@ import Swiper from 'react-native-swiper'
 
 import { realm, Entry } from '../models/realm'
 import { updateResults } from '../actions/updateResults'
-import { globalStyles, primaryColor, bodyTextColor, outlineColor, secondaryColor, bodyBackgroundColor } from '../config/globalStyles'
 
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
 import EntryCard from './EntryCard'
@@ -30,7 +29,6 @@ class HomePage extends React.Component {
   }
 
   confirmDelete = entry => {
-    // let entry = this.props.results[this.state.selectedIndex]
     Alert.alert(
       'Delete entry permanently',
       'Are you sure?',
@@ -95,17 +93,6 @@ class HomePage extends React.Component {
     this.props.updateResults(results)
   }
 
-  renderPagination = (index, total, context) => {
-    return <View style={styles.paginationStyle}>
-              {/* <TouchableOpacity activeOpacity={0.7} onPress={this.toggleModal}> */}
-              <Text style={styles.paginationText}>
-                {index + 1} of {total}
-              </Text>
-              {/* </TouchableOpacity> */}
-            </View>
-
-  }
-
   toggleModal = () => {
     this.setState({
       modalVisible: !this.state.modalVisible
@@ -114,18 +101,36 @@ class HomePage extends React.Component {
 
   render() {
 
+    const { bodyTextColor, borderColor, bodyBackgroundColor, primaryColor, secondaryColor } = this.props.theme
+
+    const renderPagination = (index, total, context) => {
+      return <View style={[styles.paginationStyle, { backgroundColor: secondaryColor, borderColor }]}>
+        {/* <TouchableOpacity activeOpacity={0.7} onPress={this.toggleModal}> */}
+        <Text style={[styles.paginationText, { color: bodyTextColor }]}>
+          {index + 1} of {total}
+        </Text>
+        {/* </TouchableOpacity> */}
+      </View>
+    }
+
     return (
-      <View style={[globalStyles.body, styles.home]}>
+      <View style={[styles.home, {backgroundColor: bodyBackgroundColor}]}>
           <Swiper
             horizontal={true}
             loadMinimal
             loadMinimalSize={2}
             showsPagination={true}
-            renderPagination={this.renderPagination}
+            renderPagination={renderPagination}
             showsButtons={false}
             key={this.props.results.length}
-            nextButton={<Text style={styles.navButtons}>›</Text>}
-            prevButton={<Text style={styles.navButtons}>‹</Text>}
+            nextButton={<Text style={[
+              styles.navButtons, 
+              {color: primaryColor}
+            ]}>›</Text>}
+            prevButton={<Text style={[
+              styles.navButtons,
+              { color: primaryColor }
+            ]}>‹</Text>}
           >
             {this.props.results.map(entry =>
               <EntryCard
@@ -135,12 +140,14 @@ class HomePage extends React.Component {
                 shareEntry={this.shareEntry}
                 navigation={this.props.navigation}
                 key={entry.id}
+                theme={this.props.theme}
               />
               )}
           </Swiper>
         <QueryModal
           visible={this.state.modalVisible}
           closeModal={this.toggleModal}
+          bodyTextColor={bodyTextColor}
         />
       </View>
     )
@@ -156,36 +163,32 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.02,
     paddingBottom: height * 0.03,
     paddingHorizontal: width * 0.03,
-    backgroundColor: bodyBackgroundColor
   }, 
   navButtons: {
     fontSize: 50,
-    color: primaryColor,
   },
   paginationStyle: {
     position: 'absolute',
     bottom: -7,
     right: -2,
-    backgroundColor: secondaryColor,
-    borderColor: outlineColor,
     borderWidth: 1,
     borderRadius: 10,
     padding: 5,
     opacity: 0.9
   },
   paginationText: {
-    color: bodyTextColor,
     fontSize: 15,
   }
 })
 
-mapStateToProps = ({ authors, categories, results, sources, tags, query }) => ({
+mapStateToProps = ({ authors, categories, results, sources, tags, query, theme }) => ({
   authors,
   categories,
   results,
   sources,
   query,
-  tags
+  tags,
+  theme
 })
 
 export default connect(mapStateToProps, {updateResults})(HomePage)

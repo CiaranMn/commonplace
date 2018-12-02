@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {
   Image,
   StyleSheet,
@@ -7,8 +8,6 @@ import {
 } from 'react-native'
 
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
-
-import { globalStyles, primaryColor } from '../config/globalStyles'
 
 class Settings extends React.Component {
 
@@ -23,9 +22,12 @@ class Settings extends React.Component {
   }
 
   render() {
+
+    const {bodyBackgroundColor, primaryColor} = this.props.theme
+
     return (
-      <View style={[globalStyles.body, styles.home]}>
-        <Text style={globalStyles.header}>This is the Settings Page</Text>
+      <View style={[styles.home, {backgroundColor: bodyBackgroundColor}]}>
+        <Text>This is the Settings Page</Text>
         <Image source={{uri: `${this.state.source}`}} style={{width:300, height: 300}}/>
         <Text>{this.state.text}</Text>
         <Button buttonText={"Test OCR"}
@@ -44,7 +46,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
+  }
 })
 
-export default Settings
+mapStateToProps = ({ theme }) => ({
+  theme
+})
+
+export default connect(mapStateToProps)(Settings)

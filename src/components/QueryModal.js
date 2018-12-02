@@ -7,12 +7,11 @@ import {
   Dimensions
 } from 'react-native';
 
-import { bodyTextColor, globalStyles } from '../config/globalStyles';
 import {footerHeight} from '../navigators/TabNavigator'
 
 const {width, height} = Dimensions.get('screen')
 
-export default QueryModal = ({visible, closeModal}) => 
+export default QueryModal = ({ visible, closeModal, bodyTextColor}) => 
   <Modal
     animationType="fade"
     transparent={true}

@@ -7,9 +7,9 @@ import {
   TextInput
 } from 'react-native'
 
-import {globalStyles, bodyTextColor} from '../config/globalStyles'
+import {globalStyles} from '../config/globalStyles'
 
-export default NewInput = ({switchOn, onSwitchValueChange, textValue, onTextValueChange}) => 
+export default NewInput = ({bodyTextColor, switchOn, onSwitchValueChange, textValue, onTextValueChange}) => 
 
   <View style={[globalStyles.alignRight, {width: "100%"}]}>
     <View style={{alignItems: 'center'}}>

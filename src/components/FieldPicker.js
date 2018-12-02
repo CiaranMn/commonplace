@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   View,
-  StyleSheet,
   Platform
 } from 'react-native'
 import {
@@ -11,16 +10,18 @@ import {
   Picker,
 } from 'native-base'
 
-import {globalStyles, bodyTextColor} from '../config/globalStyles'
+import {globalStyles} from '../config/globalStyles'
 
-export default FieldPicker = ({type, options, selection, handleChange, enabled, label}) => {
+export default FieldPicker = ({type, options, selection, handleChange, enabled, label, bodyTextColor}) => {
 
   return (
 
       <Item picker style={[globalStyles.formItem, globalStyles.alignRight]}>
         {
           label &&
-          <Label style={globalStyles.label}>{type}</Label>
+          <Label style={[globalStyles.label, {color: bodyTextColor}]}>
+           {type}
+          </Label>
         }
         <View style={[
           globalStyles.input,
@@ -35,7 +36,7 @@ export default FieldPicker = ({type, options, selection, handleChange, enabled, 
             iosHeader={type}
             mode={"dropdown"}
             placeholder={`Select ${type}`}
-            placeholderStyle={globalStyles.label}
+            placeholderStyle={[globalStyles.label, bodyTextColor]}
             placeholderIconColor="#007aff"
             selectedValue={selection}
             onValueChange={handleChange}

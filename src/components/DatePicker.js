@@ -22,9 +22,10 @@ export default DatePickerInput = ({date, changeDate}) => {
                 right: 5,
                 top: 4,
               },
-              dateInput: globalStyles.input,
+              dateInput: globalStyles.input
             }}
             onDateChange={changeDate}
           />
 }
+
 

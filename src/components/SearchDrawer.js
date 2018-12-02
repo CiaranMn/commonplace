@@ -14,19 +14,10 @@ import {
   Label,
 } from 'native-base'
 
-import moment from 'moment'
 import {Entry} from '../models/realm'
 import {updateResults} from '../actions/updateResults'
 
-import { 
-  globalStyles,
-  secondaryColor, 
-  deleteColor,
-  bodyTextColor, 
-  outlineColor, 
-  primaryColor,
-  bodyBackgroundColor
-} from '../config/globalStyles';
+import { globalStyles, borderColor } from '../config/globalStyles';
 
 import { headerHeight } from '../navigators/StackNavigators'
 import DatePickerInput from './DatePicker'
@@ -84,6 +75,13 @@ class SearchDrawer extends React.Component {
 
   render() {
 
+    const {
+      deleteColor,
+      bodyTextColor,
+      primaryColor,
+      bodyBackgroundColor
+    } = this.props.theme
+
     return (
 
       <SafeAreaView 
@@ -91,13 +89,19 @@ class SearchDrawer extends React.Component {
         name="_safeAreaView"
         >
 
-        <View style={styles.formContainer}>
+        <View style={[
+          styles.formContainer,
+          {
+            backgroundColor: bodyBackgroundColor,
+            borderColor
+          }
+        ]}>
           <Form style={styles.form}>
             <Item rounded style={[
               styles.marginBottom,
               {
               borderRadius: 10,
-              borderColor: outlineColor
+              borderColor
               }
             ]} > 
               <Icon name="ios-search" />
@@ -138,6 +142,7 @@ class SearchDrawer extends React.Component {
                 options={this.props.categories}
                 selection={this.state.category}
                 handleChange={category => this.setState({ category })}
+                bodyTextColor={bodyTextColor}
               />
             </View>
             <View style={styles.marginBottom}>
@@ -147,6 +152,7 @@ class SearchDrawer extends React.Component {
                 options={this.props.authors}
                 selection={this.state.author}
                 handleChange={author => this.setState({ author })}
+                bodyTextColor={bodyTextColor}
               />
             </View>
             <View style={styles.marginBottom}>
@@ -156,6 +162,7 @@ class SearchDrawer extends React.Component {
                 options={this.props.sources}
                 selection={this.state.source}
                 handleChange={source => this.setState({ source })}
+                bodyTextColor={bodyTextColor}
               />
             </View>
             <View style={styles.marginBottom}>
@@ -165,12 +172,13 @@ class SearchDrawer extends React.Component {
                 options={this.props.tags}
                 selection={this.state.tag}
                 handleChange={tag => this.setState({ tag })}
+                bodyTextColor={bodyTextColor}
               />
             </View>
 
             <View style={styles.marginBottom}>
               <Item style={[globalStyles.formItem, globalStyles.alignRight]}>
-                <Label style={globalStyles.label}>
+                <Label style={[globalStyles.label, {color: bodyTextColor}]}>
                   From
               </Label>
                 <DatePickerInput
@@ -180,7 +188,7 @@ class SearchDrawer extends React.Component {
             </View>
             <View style={styles.marginBottom}>
               <Item style={[globalStyles.formItem, globalStyles.alignRight]}>
-                <Label style={globalStyles.label}>
+                <Label style={[globalStyles.label, { color: bodyTextColor }]}>
                   To
               </Label>
                 <DatePickerInput
@@ -202,12 +210,10 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     marginTop: headerHeight,
-    backgroundColor: bodyBackgroundColor,
     justifyContent: 'flex-start',
     alignItems: 'center',
     borderRadius: 10,
     padding: 10,
-    borderColor: outlineColor,
     borderWidth: 1,
   },
   form: {
@@ -218,11 +224,12 @@ const styles = StyleSheet.create({
   }
 })
 
-mapStateToProps = ({ authors, categories, sources, tags }) => ({
+mapStateToProps = ({ authors, categories, sources, tags, theme }) => ({
   authors,
   categories,
   sources,
-  tags
+  tags,
+  theme
 })
 
 export default connect(mapStateToProps, {updateResults})(SearchDrawer)

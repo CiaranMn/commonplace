@@ -5,7 +5,6 @@ import { Dimensions } from 'react-native'
 import HomePage from '../components/HomePage'
 import Settings from '../components/Settings'
 import AddOrEditEntry from '../components/AddOrEditEntry'
-import SearchResults from '../components/SearchResults'
 
 import { primaryColor, secondaryColor } from '../config/globalStyles'
 
@@ -25,7 +24,6 @@ const defaultNavigationOptions = {
 export const HomeStack = createStackNavigator(
   {
     HomePage,
-    SearchResults,
     AddOrEditEntry
   },
   {

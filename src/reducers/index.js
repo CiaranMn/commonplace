@@ -6,6 +6,7 @@ import resultsReducer from './resultsReducer'
 import sourceReducer from './sourceReducer'
 import tagReducer from './tagReducer'
 import queryReducer from './queryReducer'
+import themeReducer from './themeReducer';
 
 export default rootReducer = combineReducers({
   authors: authorReducer,
@@ -13,5 +14,6 @@ export default rootReducer = combineReducers({
   sources: sourceReducer,
   tags: tagReducer,
   query: queryReducer,
-  results: resultsReducer
+  results: resultsReducer,
+  theme: themeReducer
 })

@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {
   View, 
   Platform,
@@ -9,34 +10,41 @@ import {
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import {statusBarColor, statusBarText, outlineColor} from '../config/globalStyles'
-
 const searchIcon = <Icon
   name="md-search"
   color={"#fff"}
   size={30}
 />
 
-export default SearchIconAndStatusColor = ({navigation}) => 
+const SearchIconAndStatusColor = ({navigation, theme}) => {
 
-  <View style={{ marginRight: 14 }}>
-    <StatusBar
-      backgroundColor={statusBarColor}
-      barStyle={statusBarText}
-    />
+  const {statusBarColor, statusBarText, outlineColor} = theme
 
-    { Platform.OS === 'ios' 
-    ?
-      <TouchableOpacity onPress={navigation.openDrawer}>
-        {searchIcon}
-      </TouchableOpacity>
-    : 
-      <TouchableNativeFeedback onPress={navigation.openDrawer}
-        background={TouchableNativeFeedback.Ripple(outlineColor, true)}>
-        <View>
-         { searchIcon }
-        </View>
-      </TouchableNativeFeedback>
-    }
-  </View>
-  
+  return (
+    <View style={{ marginRight: 14 }}>
+      <StatusBar
+        backgroundColor={statusBarColor}
+        barStyle={statusBarText}
+      />
+
+      {Platform.OS === 'ios'
+        ?
+        <TouchableOpacity onPress={navigation.openDrawer}>
+          {searchIcon}
+        </TouchableOpacity>
+        :
+        <TouchableNativeFeedback onPress={navigation.openDrawer}
+          background={TouchableNativeFeedback.Ripple(outlineColor, true)}>
+          <View>
+            {searchIcon}
+          </View>
+        </TouchableNativeFeedback>
+      }
+    </View>
+  )
+}
+
+mapStateToProps = ({ theme }) => ({ theme })
+
+export default connect(mapStateToProps)(SearchIconAndStatusColor)
+
