@@ -10,21 +10,21 @@ import {
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
+import {outlineColor} from '../config/globalStyles'
+
 const searchIcon = <Icon
   name="md-search"
   color={"#fff"}
   size={30}
 />
 
-const SearchIconAndStatusColor = ({navigation, theme}) => {
-
-  const {statusBarColor, statusBarText, outlineColor} = theme
+const SearchIconAndStatusColor = ({navigation, statusBarColor}) => {
 
   return (
     <View style={{ marginRight: 14 }}>
       <StatusBar
         backgroundColor={statusBarColor}
-        barStyle={statusBarText}
+        barStyle={'light-content'}
       />
 
       {Platform.OS === 'ios'

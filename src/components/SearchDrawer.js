@@ -101,7 +101,8 @@ class SearchDrawer extends React.Component {
               styles.marginBottom,
               {
               borderRadius: 10,
-              borderColor
+              borderColor,
+              backgroundColor: 'white'
               }
             ]} > 
               <Icon name="ios-search" />

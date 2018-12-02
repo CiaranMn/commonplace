@@ -35,7 +35,9 @@ class AddOrEditEntry extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam('entry', false) ? 'Edit Entry' : 'Add Entry',
-    headerRight: <SearchIconAndStatusColor navigation={navigation} />,
+    headerRight: 
+      <SearchIconAndStatusColor navigation={navigation}
+        statusBarColor={navigation.getParam('statusBarColor', '#3C8C90')} />,
     headerStyle: {
       backgroundColor: navigation.getParam('primaryColor', '#3C8C90'),
     },
@@ -45,7 +47,8 @@ class AddOrEditEntry extends React.Component {
   updateHeaderTheme = () => {
     this.props.navigation.setParams({
       primaryColor: this.props.theme.primaryColor,
-      secondaryColor: this.props.theme.secondaryColor
+      secondaryColor: this.props.theme.secondaryColor,
+      statusBarColor: this.props.theme.statusBarColor
     })
   }
 

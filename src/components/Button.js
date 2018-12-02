@@ -22,7 +22,7 @@ export default Button = ({onPress, buttonColor, buttonText}) =>
       backgroundColor: buttonColor
     }}>
 
-      <Text style={{ color: "white" }}>
+      <Text style={{ color: "white", fontWeight: 'bold' }}>
         {buttonText}
       </Text>
       

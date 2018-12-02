@@ -16,12 +16,15 @@ import { updateResults } from '../actions/updateResults'
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
 import EntryCard from './EntryCard'
 import QueryModal from './QueryModal'
+import { globalStyles, borderColor } from '../config/globalStyles';
 
 class HomePage extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
     title: 'Commonplace',
-    headerRight: <SearchIconAndStatusColor navigation={navigation} />,
+    headerRight: 
+      <SearchIconAndStatusColor navigation={navigation}
+        statusBarColor={navigation.getParam('statusBarColor', '#3C8C90')} />,
     headerStyle: { 
       backgroundColor: navigation.getParam('primaryColor', '#3C8C90'),
      },
@@ -40,7 +43,8 @@ class HomePage extends React.Component {
   updateHeaderTheme = () => {
     this.props.navigation.setParams({
       primaryColor: this.props.theme.primaryColor,
-      secondaryColor: this.props.theme.secondaryColor
+      secondaryColor: this.props.theme.secondaryColor,
+      statusBarColor: this.props.theme.statusBarColor
     })
   }
 
@@ -123,7 +127,7 @@ class HomePage extends React.Component {
 
   render() {
 
-    const { bodyTextColor, borderColor, bodyBackgroundColor, primaryColor, secondaryColor } = this.props.theme
+    const { bodyTextColor, bodyBackgroundColor, primaryColor, secondaryColor } = this.props.theme
 
     const renderPagination = (index, total, context) => {
       return <View style={[styles.paginationStyle, { backgroundColor: secondaryColor, borderColor }]}>
