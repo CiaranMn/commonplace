@@ -33,10 +33,21 @@ class HomePage extends React.Component {
 
   constructor(props) {
     super(props)
+    this.updateHeaderTheme()
+  }
+
+
+  updateHeaderTheme = () => {
     this.props.navigation.setParams({
       primaryColor: this.props.theme.primaryColor,
       secondaryColor: this.props.theme.secondaryColor
     })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.theme !== this.props.theme) {
+      this.updateHeaderTheme()
+    }
   }
 
   confirmDelete = entry => {

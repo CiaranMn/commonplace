@@ -42,12 +42,22 @@ class AddOrEditEntry extends React.Component {
     headerTintColor: navigation.getParam('secondaryColor', '#fff')
   })
 
-  constructor(props) {
-    super(props)
+  updateHeaderTheme = () => {
     this.props.navigation.setParams({
       primaryColor: this.props.theme.primaryColor,
       secondaryColor: this.props.theme.secondaryColor
     })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.theme !== this.props.theme) {
+      this.updateHeaderTheme()
+    }
+  }
+
+  constructor(props) {
+    super(props)
+    this.updateHeaderTheme()
     const entry = this.props.navigation.getParam('entry', false)
     this.state = {
       content: entry.content || '',
@@ -84,7 +94,7 @@ class AddOrEditEntry extends React.Component {
   }
 
   scrollToTop = () => {
-    this.refs._scrollView.scrollTo({ offset: 0, animated: true });
+    this.refs._scrollView.scrollTo({ offset: 0, animated: false });
   }
 
   createOrUpdateEntry = () => {

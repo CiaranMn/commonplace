@@ -6,8 +6,12 @@ import {
   Text,
   View
 } from 'react-native'
+import {NavigationActions} from 'react-navigation'
 
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
+import Button from './Button'
+
+import {themes, globalStyles} from '../config/globalStyles'
 
 class Settings extends React.Component {
 
@@ -19,35 +23,59 @@ class Settings extends React.Component {
     },
     headerTintColor: navigation.getParam('secondaryColor', '#fff')
   })
-  
-  state = {
-    image: '',
-    text: 'Test text'
-  }
 
   constructor(props) {
     super(props)
+    this.updateHeaderTheme()
+  }
+
+
+  updateHeaderTheme = () => {
     this.props.navigation.setParams({
       primaryColor: this.props.theme.primaryColor,
       secondaryColor: this.props.theme.secondaryColor
     })
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.theme !== this.props.theme) {
+      this.updateHeaderTheme()
+    }
+  }
+
+  renderThemeButtons = () => {
+    let buttons = []
+    for (let theme in themes) {
+      buttons.push(
+        <Button 
+          onPress={() => this.props.changeTheme(themes[theme])}
+          buttonColor={themes[theme].primaryColor}
+          buttonText={theme}
+          key={theme}
+          />
+      )
+    }
+    return buttons
+  }
+
   render() {
 
-    const {bodyBackgroundColor, primaryColor} = this.props.theme
+    const {bodyBackgroundColor, bodyTextColor, primaryColor} = this.props.theme
 
     return (
       <View style={[styles.home, {backgroundColor: bodyBackgroundColor}]}>
-        <Text>This is the Settings Page</Text>
-        <Image source={{uri: `${this.state.source}`}} style={{width:300, height: 300}}/>
-        <Text>{this.state.text}</Text>
-        <Button buttonText={"Test OCR"}
-          onPress={() => alert('moved')}
-          buttonColor={primaryColor}
-          >
-            Pick image
-          </Button>
+        <View>
+          <Text style={[
+            globalStyles.label,
+            {color: bodyTextColor}
+            ]}>
+            Theme
+          </Text>
+          <View>
+            {this.renderThemeButtons()}
+          </View>
+
+        </View>
       </View>
     )
   }
@@ -56,8 +84,9 @@ class Settings extends React.Component {
 const styles = StyleSheet.create({
   home: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    paddingTop: 20,
   }
 })
 
@@ -65,4 +94,8 @@ mapStateToProps = ({ theme }) => ({
   theme
 })
 
-export default connect(mapStateToProps)(Settings)
+mapDispatchToProps = dispatch => ({
+  changeTheme: theme => dispatch({ type: 'CHANGE_THEME', theme })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings)

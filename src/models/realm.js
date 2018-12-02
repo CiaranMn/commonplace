@@ -3,6 +3,7 @@ import cuid from 'cuid'
 import {store} from '../../App'
 import showToast from '../lib/showToast'
 
+// TODO - split out classes into their own files
 // import Entry from './Entry'
 // import Author from './Author'
 // import Category from './Category'
@@ -111,7 +112,7 @@ export class Entry extends Realm.Object {
     try {
       this.createOrUpdate(object, update)
       showToast(update ? "Entry updated" : "Entry added", "success")
-      store.dispatch({
+      !update && store.dispatch({
         type: "ADD_RESULTS",
         results: Entry.getEntries().slice(-1)
       })
@@ -132,7 +133,7 @@ export class Entry extends Realm.Object {
         }
       }
           
-      // CHECK TAGS, SOURCE, AUTHOR FOR DELETION
+      // TODO - ALSO CHECK TAGS and SOURCE FOR DELETION
 
       realm.delete(realm.objectForPrimaryKey('Entry', entry.id))
       showToast(
