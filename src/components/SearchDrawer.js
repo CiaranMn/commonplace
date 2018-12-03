@@ -15,7 +15,7 @@ import {
 } from 'native-base'
 
 import {Entry} from '../models/realm'
-import {updateResults} from '../actions/updateResults'
+import updateResults from '../actions/updateResults'
 
 import { globalStyles, borderColor } from '../config/globalStyles';
 

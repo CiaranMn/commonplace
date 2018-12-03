@@ -144,7 +144,7 @@ export default EntryCard = ({
         </View>
         <View style={{width: "100%", alignItems: 'flex-start'}}>
           <Text note style={{fontWeight: 'bold'}}>
-            Date: {moment(entry.date || entry.dateCreated).format('DD-MM-YYYY')}
+            Date: {moment(entry.date || entry.dateCreated).format('DD-MM-YYYY')} | {entry.category.name}
           </Text>
         </View>
       

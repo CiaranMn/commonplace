@@ -11,12 +11,14 @@ import {
 import Swiper from 'react-native-swiper'
 
 import { realm, Entry } from '../models/realm'
-import { updateResults } from '../actions/updateResults'
+import updateResults from '../actions/updateResults'
 
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
 import EntryCard from './EntryCard'
 import QueryModal from './QueryModal'
-import { globalStyles, borderColor } from '../config/globalStyles';
+import { globalStyles, borderColor } from '../config/globalStyles'
+
+import getSettings from '../lib/getSettings'
 
 class HomePage extends React.Component {
 
@@ -30,15 +32,19 @@ class HomePage extends React.Component {
      },
     headerTintColor: navigation.getParam('secondaryColor', '#fff')
   })
+
   state = {
     modalVisible: false,
+    ready: false
   }
 
   constructor(props) {
     super(props)
     this.updateHeaderTheme()
+    this.state = {
+      ready: getSettings()
+    }
   }
-
 
   updateHeaderTheme = () => {
     this.props.navigation.setParams({
@@ -139,16 +145,21 @@ class HomePage extends React.Component {
       </View>
     }
 
+    if (this.state.ready !== 'done') {
+      console.log('here 149')
+      return <View></View>
+    } else {
+
     return (
       <View style={[styles.home, {backgroundColor: bodyBackgroundColor}]}>
           <Swiper
+            ref={"_Swiper"}
             horizontal={true}
             loadMinimal
             loadMinimalSize={2}
             showsPagination={true}
             renderPagination={renderPagination}
             showsButtons={false}
-            key={this.props.results.length}
             nextButton={<Text style={[
               styles.navButtons, 
               {color: primaryColor}
@@ -177,6 +188,7 @@ class HomePage extends React.Component {
         />
       </View>
     )
+    }
   }
 }
 

@@ -2,18 +2,16 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {
   AsyncStorage,
-  Image,
   StyleSheet,
   Text,
   View
 } from 'react-native'
 
-import {NavigationActions} from 'react-navigation'
-
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
 import Button from './Button'
 
 import {themes, globalStyles} from '../config/globalStyles'
+import updateTheme from '../actions/updateTheme'
 
 class Settings extends React.Component {
 
@@ -41,13 +39,12 @@ class Settings extends React.Component {
     })
   }
 
-  changeTheme = theme => {
-    this.props.changeTheme(theme)
-    // try {
-    //   await AsyncStorage.setItem('theme', JSON.stringify(theme))
-    // } catch (err) {
-    //   alert(err.message)
-    // }
+  updateAndSaveTheme = theme => {
+    console.log(theme)
+    this.props.updateTheme(theme)
+    console.log(JSON.stringify(theme))
+    AsyncStorage.setItem('theme', JSON.stringify(theme))
+      .catch(err => alert(err.message))
   }
 
   componentDidUpdate(prevProps) {
@@ -61,7 +58,7 @@ class Settings extends React.Component {
     for (let theme in themes) {
       buttons.push(
         <Button 
-          onPress={() => this.changeTheme(themes[theme])}
+          onPress={() => this.updateAndSaveTheme(themes[theme])}
           buttonColor={themes[theme].primaryColor}
           buttonText={theme}
           key={theme}
@@ -107,8 +104,4 @@ mapStateToProps = ({ theme }) => ({
   theme
 })
 
-mapDispatchToProps = dispatch => ({
-  changeTheme: theme => dispatch({ type: 'CHANGE_THEME', theme })
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+export default connect(mapStateToProps, {updateTheme})(Settings)
