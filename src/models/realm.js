@@ -28,8 +28,29 @@ export class Entry extends Realm.Object {
     }
   }
 
-  static getEntries() {
-    return Array.prototype.slice.call(realm.objects('Entry'))
+  static getEntries(sort='Oldest first') {
+    let results
+    switch (sort) {
+      case 'Oldest first':
+        results = realm.objects('Entry').sorted('date')
+        break
+      case 'Newest first':
+        results = realm.objects('Entry').sorted('date', true)
+        break
+      case 'By Category':
+        results = realm.objects('Entry').sorted('category.name')
+        break
+      case 'By Author':
+        results = realm.objects('Entry').sorted('author.name')
+        break
+      case 'By Source':
+        results = realm.objects('Entry').sorted('source.name')
+        break
+      default: 
+        results = realm.objects('Entry')
+        break
+    }
+    return Array.prototype.slice.call(results)
   }
 
   static search(query) {

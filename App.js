@@ -17,7 +17,6 @@ const authors = Author.getAuthors()
 const categories = Category.getCategories()
 const sources = Source.getSources()
 const tags = Tag.getTags()
-const results = Entry.getEntries()
 
 // populate initial lists from db to display in pickers - 
 // updated by Entry model when changes to db made
@@ -25,7 +24,6 @@ export const store = createStore(
   rootReducer, { 
     categories, 
     authors, 
-    results,
     sources, 
     tags
   } 

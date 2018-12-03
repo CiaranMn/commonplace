@@ -151,13 +151,12 @@ class Settings extends React.Component {
             {helpIcon()}
           </View>
           <View style={styles.settingGroup}>
-            <View style={{ width: '50%', marginRight: 15 }}>
+            <View style={{ width: '55%', marginRight: 15 }}>
               <FieldPicker
                 type={"font size"}
-                options={["10", "11", "12", "13", "14", "15", "16", "17", "18"]}
+                options={["12", "13", "14", "15", "16", "17", "18", "19", "20"]}
                 selection={entryFontSize.toString()}
-                handleChange={entryFontSize => 
-                  this.setState({ entryFontSize: parseInt(entryFontSize) })}
+                handleChange={entryFontSize => this.setState({entryFontSize})}
                 bodyTextColor={bodyTextColor}
                 enabled
               />
@@ -169,7 +168,7 @@ class Settings extends React.Component {
           </View>
 
           <View style={styles.settingGroup}>
-            <View style={{width: '50%', marginRight: 15}}>
+            <View style={{width: '55%', marginRight: 15}}>
               <FieldPicker
                 type={"Default"}
                 options={[
@@ -178,7 +177,6 @@ class Settings extends React.Component {
                   "By Category",
                   "By Author",
                   "By Source",
-                  "Random",
                 ]}
                 selection={homePageEntries}
                 handleChange={homePageEntries => this.setState({ homePageEntries })}

@@ -38,6 +38,9 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.updateHeaderTheme()
+    this.props.updateResults(
+      Entry.getEntries(this.props.settings.homePageEntries)
+    )
   }
 
   updateHeaderTheme = () => {
@@ -51,6 +54,12 @@ class HomePage extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.theme !== this.props.theme) {
       this.updateHeaderTheme()
+    }
+    let {homePageEntries} = this.props.settings
+    if (prevProps.settings.homePageEntries !==  homePageEntries) {
+      this.props.updateResults(
+        Entry.getEntries(homePageEntries)
+      )
     }
   }
 
@@ -135,7 +144,7 @@ class HomePage extends React.Component {
 
     const { bodyTextColor, bodyBackgroundColor, primaryColor, secondaryColor } = this.props.theme
 
-    let{ showNavButtons, entryFontSize } = this.props.settings
+    let { showNavButtons, entryFontSize } = this.props.settings
     entryFontSize = parseInt(entryFontSize)
 
     const renderPagination = (index, total, context) => {
@@ -175,8 +184,6 @@ class HomePage extends React.Component {
                 shareEntry={this.shareEntry}
                 navigation={this.props.navigation}
                 key={entry.id}
-                theme={this.props.theme}
-                entryFontSize={entryFontSize}
               />
               )}
           </Swiper>

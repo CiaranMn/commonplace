@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {
   Dimensions,
   Image,
@@ -18,9 +19,9 @@ import moment from 'moment'
 import whitePaper from '../../assets/white-oxford.jpg'
 import { borderColor } from '../config/globalStyles'
 
-export default EntryCard = ({
+const EntryCard = ({
   entry, 
-  entryFontSize,
+  settings,
   confirmDelete, 
   editEntry, 
   shareEntry,
@@ -28,6 +29,8 @@ export default EntryCard = ({
 }) => {
 
   const { bodyTextColor, deleteColor } = theme
+
+  const entryFontSize = parseInt(settings.entryFontSize) 
 
   return (
     <Card style={styles.card}>
@@ -153,6 +156,13 @@ export default EntryCard = ({
     </Card>
   )
 }
+
+mapStateToProps = ({ settings, theme }) => ({
+  settings,
+  theme
+})
+
+export default connect(mapStateToProps)(EntryCard)
 
 const styles = StyleSheet.create({
   card: {

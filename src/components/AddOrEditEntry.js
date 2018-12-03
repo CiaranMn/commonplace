@@ -237,7 +237,8 @@ class AddOrEditEntry extends React.Component {
               style={[
                  globalStyles.input,
                  styles.marginBottom, 
-                 {width: '100%'},
+                 {width: '100%',
+                 fontSize: 16},
                 ]}
               value={this.state.content}
               onChangeText={content => this.setState({content})}
