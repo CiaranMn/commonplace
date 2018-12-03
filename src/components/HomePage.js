@@ -6,6 +6,7 @@ import {
   Share,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native'
 import Swiper from 'react-native-swiper'
@@ -156,52 +157,56 @@ class HomePage extends React.Component {
 
     const renderPagination = (index, total, context) => {
       return <View style={[styles.paginationStyle, { backgroundColor: secondaryColor, borderColor }]}>
-        {/* <TouchableOpacity activeOpacity={0.7} onPress={this.toggleModal}> */}
-        <Text style={[styles.paginationText, { color: bodyTextColor }]}>
-          {index + 1} of {total}
-        </Text>
-        {/* </TouchableOpacity> */}
+        <TouchableOpacity activeOpacity={0.7} onPress={this.toggleModal}>
+          <Text style={[styles.paginationText, { color: bodyTextColor }]}>
+            {index + 1} of {total}
+          </Text>
+          <QueryModal
+            visible={this.state.modalVisible}
+            closeModal={this.toggleModal}
+            bodyTextColor={bodyTextColor}
+          />
+        </TouchableOpacity>
       </View>
     }
 
     return (
-      // <View style={[styles.home, {backgroundColor: bodyBackgroundColor}]}>
-          <Swiper
-            ref={"_Swiper"}
-            horizontal={true}
-            // index={this.state.index}
-            // onIndexChanged={index => this.setState({index})}
-            loadMinimal
-            loadMinimalSize={1}
-            showsPagination={true}
-            renderPagination={renderPagination}
-            showsButtons={showNavButtons}
-            nextButton={<Text style={[
-              styles.navButtons, 
-              {color: primaryColor}
-            ]}>›</Text>}
-            prevButton={<Text style={[
-              styles.navButtons,
-              { color: primaryColor }
-            ]}>‹</Text>}
-          >
-            {this.props.results.map(entry =>
-              <EntryCard
-                entry={entry}
-                confirmDelete={this.confirmDelete}
-                editEntry={this.editEntry}
-                shareEntry={this.shareEntry}
-                navigation={this.props.navigation}
-                key={entry.id}
-              />
-              )}
-          </Swiper>
-        /* <QueryModal
-          visible={this.state.modalVisible}
-          closeModal={this.toggleModal}
-          bodyTextColor={bodyTextColor}
-        />
-      </View> */
+      <Swiper
+        ref={"_Swiper"}
+        horizontal={true}
+        loadMinimal
+        loadMinimalSize={1}
+        showsPagination={true}
+        renderPagination={renderPagination}
+        showsButtons={showNavButtons}
+        nextButton={
+          <Text style={[
+            styles.navButtons, 
+            {color: primaryColor}
+          ]}>
+            ›
+          </Text>
+        }
+        prevButton={
+          <Text style={[
+            styles.navButtons,
+            { color: primaryColor }
+          ]}>
+          ‹
+          </Text>
+        }
+      >
+        {this.props.results.map(entry =>
+          <EntryCard
+            entry={entry}
+            confirmDelete={this.confirmDelete}
+            editEntry={this.editEntry}
+            shareEntry={this.shareEntry}
+            navigation={this.props.navigation}
+            key={entry.id}
+          />
+          )}
+      </Swiper>
     )
   }
   
@@ -210,20 +215,13 @@ class HomePage extends React.Component {
 const {width, height} = Dimensions.get('screen')
 
 const styles = StyleSheet.create({
-  home: {
-    flex: 1,
-    width: "100%",
-    paddingTop: height * 0.02,
-    paddingBottom: height * 0.025,
-    paddingHorizontal: width * 0.03,
-  }, 
   navButtons: {
     fontSize: 50,
   },
   paginationStyle: {
     position: 'absolute',
-    bottom: -7,
-    right: -2,
+    bottom: height * 0.02,
+    right: width * 0.03,
     borderWidth: 1,
     borderRadius: 10,
     padding: 5,

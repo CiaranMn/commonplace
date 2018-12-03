@@ -39,6 +39,10 @@ class SearchDrawer extends React.Component {
     this.state = this.initialState
   }
 
+  quickBrowse = (type, value) => {
+
+  }
+
   search = () => {
     const {
       content, 
@@ -137,7 +141,9 @@ class SearchDrawer extends React.Component {
                 type="Category"
                 options={this.props.categories}
                 selection={this.state.category}
-                handleChange={category => this.setState({ category })}
+                handleChange={category => {
+                  this.setState({ category })
+                }}
                 bodyTextColor={bodyTextColor}
               />
             </View>
