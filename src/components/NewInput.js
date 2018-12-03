@@ -9,7 +9,7 @@ import {
 
 import {globalStyles} from '../config/globalStyles'
 
-export default NewInput = ({bodyTextColor, switchOn, onSwitchValueChange, textValue, onTextValueChange}) => 
+export default NewInput = ({bodyTextColor, primaryColor, switchOn, onSwitchValueChange, textValue, onTextValueChange}) => 
 
   <View style={[globalStyles.alignRight, {width: "100%"}]}>
     <View style={{alignItems: 'center'}}>
@@ -20,7 +20,8 @@ export default NewInput = ({bodyTextColor, switchOn, onSwitchValueChange, textVa
       <Switch
         value={switchOn}
         onValueChange={onSwitchValueChange} 
-        style={{transform: [{ scaleX: .6 }, { scaleY: .6 }]} }
+        style={{transform: [{ scaleX: .8 }, { scaleY: .8 }]} }
+        trackColor={{ true: primaryColor }}
       />
     </View>
     <TextInput

@@ -184,7 +184,7 @@ class AddOrEditEntry extends React.Component {
 
   render() {
 
-    const {bodyTextColor, bodyBackgroundColor, deleteColor, buttonPrimary} = this.props.theme
+    const {bodyTextColor, primaryColor, bodyBackgroundColor, deleteColor, buttonPrimary} = this.props.theme
 
     return (
 
@@ -268,6 +268,7 @@ class AddOrEditEntry extends React.Component {
             <NewInput
               switchOn={this.state.newCategory}
               bodyTextColor={bodyTextColor}
+              primaryColor={primaryColor}
               onSwitchValueChange={value =>
                 this.setState({ newCategory: value })}
               textValue={this.state.newCategoryText}
@@ -289,6 +290,7 @@ class AddOrEditEntry extends React.Component {
             <NewInput
               switchOn={this.state.newAuthor}
               bodyTextColor={bodyTextColor}
+              primaryColor={primaryColor}
               onSwitchValueChange={value => this.setState({ newAuthor: value })}
               textValue={this.state.newAuthorText}
               onTextValueChange={value =>
@@ -309,6 +311,7 @@ class AddOrEditEntry extends React.Component {
             <NewInput
               switchOn={this.state.newSource}
               bodyTextColor={bodyTextColor}
+              primaryColor={primaryColor}
               onSwitchValueChange={value => this.setState({ newSource: value })}
               textValue={this.state.newSourceText}
               onTextValueChange={value =>

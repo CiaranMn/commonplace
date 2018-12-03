@@ -1,5 +1,4 @@
 import { AsyncStorage } from 'react-native'
-
 import { store } from '../../App'
 import showToast from './showToast'
 
@@ -28,6 +27,6 @@ export default getSettings = async () => {
       }
     })
     .catch(err => showToast('Error accessing settings: ' + err))
-    
+
 }
 

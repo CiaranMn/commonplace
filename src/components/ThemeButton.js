@@ -39,14 +39,14 @@ export default ThemeButton = ({ onPress, theme, name }) => (
 const styles = StyleSheet.create({
   container: {
     width: "30%",
-    aspectRatio: 2 / 1,
+    aspectRatio: 1.6 / 1,
     marginHorizontal: 5,
     marginVertical: 10,
     justifyContent: "center",
     alignItems: "center",
     borderRightWidth: 1,
     borderBottomWidth: 1,
-    borderColor: borderColor
+    borderColor: borderColor,
   },
   half: {
     height: "50%",

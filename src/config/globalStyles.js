@@ -50,7 +50,7 @@ export const themes = {
     statusBarColor: '#F3CF8A',
     bodyTextColor: "#BD7732",
     statusBarText: "light-content",
-    deleteColor: "#B84D0E",
+    deleteColor: "#EC684F",
     buttonPrimary: '#DA8F17'
   },
   dark: {

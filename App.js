@@ -9,15 +9,17 @@ import DrawerNavigator from './src/navigators/DrawerNavigator'
 import rootReducer from './src/reducers'
 import {Entry, Author, Category, Source, Tag} from './src/models/realm'
 
+let theme
 AsyncStorage.getItem('theme')
-  .then(theme => {
-    theme = (JSON.parse(theme))
+  .then(savedTheme => {
+    theme = (JSON.parse(savedTheme))
     if (theme !== null) {
       store.dispatch({
         type: 'UPDATE_THEME',
         theme
       })
     }
+    ready = true
   })
   .catch(err => alert(err.message))
 
@@ -48,13 +50,14 @@ const AppContainer = createAppContainer(DrawerNavigator)
 export class App extends React.Component {
 
   render() {
-    
+
     return (
-      <Root>
-        <Provider store={store}>
-          <AppContainer />
-        </Provider> 
-      </Root>
-    )
-  }
+        <Root>
+          <Provider store={store}>
+            <AppContainer />
+          </Provider> 
+        </Root>
+      )
+    }
+  
 }

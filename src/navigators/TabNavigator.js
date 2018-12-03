@@ -48,7 +48,7 @@ export const TabNavigator = createBottomTabNavigator({
         }}/>,
     animationEnabled: true,
     swipeEnabled: true,
-    lazy: false
+    lazy: true
   })
 
 
