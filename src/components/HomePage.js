@@ -33,6 +33,7 @@ class HomePage extends React.Component {
 
   state = {
     modalVisible: false,
+    index: 0
   }
 
   constructor(props) {
@@ -54,13 +55,19 @@ class HomePage extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.theme !== this.props.theme) {
       this.updateHeaderTheme()
+      this.forceRefresh()
     }
     let {homePageEntries} = this.props.settings
     if (prevProps.settings.homePageEntries !==  homePageEntries) {
       this.props.updateResults(
         Entry.getEntries(homePageEntries)
       )
+      this.forceRefresh()
     }
+  }
+
+  forceRefresh = () => {
+    this.setState({index: 0})
   }
 
   confirmDelete = entry => {
@@ -158,12 +165,14 @@ class HomePage extends React.Component {
     }
 
     return (
-      <View style={[styles.home, {backgroundColor: bodyBackgroundColor}]}>
+      // <View style={[styles.home, {backgroundColor: bodyBackgroundColor}]}>
           <Swiper
             ref={"_Swiper"}
             horizontal={true}
+            // index={this.state.index}
+            // onIndexChanged={index => this.setState({index})}
             loadMinimal
-            loadMinimalSize={2}
+            loadMinimalSize={1}
             showsPagination={true}
             renderPagination={renderPagination}
             showsButtons={showNavButtons}
@@ -187,12 +196,12 @@ class HomePage extends React.Component {
               />
               )}
           </Swiper>
-        <QueryModal
+        /* <QueryModal
           visible={this.state.modalVisible}
           closeModal={this.toggleModal}
           bodyTextColor={bodyTextColor}
         />
-      </View>
+      </View> */
     )
   }
   
