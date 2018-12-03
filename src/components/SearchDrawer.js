@@ -40,7 +40,13 @@ class SearchDrawer extends React.Component {
   }
 
   quickBrowse = (type, value) => {
-
+    switch (type) {
+      case 'category':
+        Entry.search({category: value})
+    }
+    // Entry.search({[type]: value})
+    this.props.navigation.navigate('Home')
+    this.clearAndClose()
   }
 
   search = () => {
@@ -84,6 +90,8 @@ class SearchDrawer extends React.Component {
       buttonPrimary,
       bodyBackgroundColor
     } = this.props.theme
+
+    const { quickBrowse } = this.props.settings
 
     return (
 
@@ -143,6 +151,7 @@ class SearchDrawer extends React.Component {
                 selection={this.state.category}
                 handleChange={category => {
                   this.setState({ category })
+                  quickBrowse && this.quickBrowse('category', category)
                 }}
                 bodyTextColor={bodyTextColor}
               />
@@ -225,11 +234,12 @@ const styles = StyleSheet.create({
   }
 })
 
-mapStateToProps = ({ authors, categories, sources, tags, theme }) => ({
+mapStateToProps = ({ authors, categories, sources, tags, settings, theme }) => ({
   authors,
   categories,
   sources,
   tags,
+  settings,
   theme
 })
 
