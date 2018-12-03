@@ -10,7 +10,8 @@ export const themes = {
     bodyTextColor: "#2e696b",
     statusBarColor: '#4bafb4',
     statusBarText: "light-content",
-    deleteColor: "#ff6666"
+    deleteColor: "#ff6666",
+    buttonPrimary: '#3C8C90'
   },
   blue: {
     primaryColor: '#2A4C90',
@@ -19,16 +20,18 @@ export const themes = {
     bodyTextColor: "#0C2962",
     statusBarColor: '#276BC9',
     statusBarText: "light-content",
-    deleteColor: "#E70D0D"
+    deleteColor: "#E70D0D",
+    buttonPrimary: '#2A4C90'
   }, 
   black: {
     primaryColor: '#35342E',
     secondaryColor: '#FFF',
-    bodyBackgroundColor: '#FFFFF8',
+    bodyBackgroundColor: '#FFFFEF',
     statusBarColor: '#4F4D4D',
     bodyTextColor: "#000",
     statusBarText: "light-content",
-    deleteColor: "#B72C16"
+    deleteColor: "#B72C16",
+    buttonPrimary: '#35342E'
   }, 
   red: {
     primaryColor: '#C12E2E',
@@ -37,7 +40,8 @@ export const themes = {
     statusBarColor: '#E73E3E',
     bodyTextColor: "#4E1515",
     statusBarText: "light-content",
-    deleteColor: "#D90000"
+    deleteColor: "#D90000",
+    buttonPrimary: '#E57B22'
   },
   gold: {
     primaryColor: '#CAA36B',
@@ -46,16 +50,18 @@ export const themes = {
     statusBarColor: '#F3CF8A',
     bodyTextColor: "#BD7732",
     statusBarText: "light-content",
-    deleteColor: "#B84D0E"
+    deleteColor: "#B84D0E",
+    buttonPrimary: '#DA8F17'
   },
   dark: {
     primaryColor: 'rgb(33,37,42)',
-    secondaryColor: 'rgb(191,133,214)',
+    secondaryColor: 'rgb(171,125,208)',
     bodyBackgroundColor: 'rgb(40,45,50)',
     statusBarColor: '#4F4D4D',
     bodyTextColor: "rgb(94,177,230)",	
     statusBarText: "light-content",
-    deleteColor: "#B72C16"
+    deleteColor: "rgb(189,75,72)",
+    buttonPrimary: 'rgb(171,125,208)'
   }
 }
 

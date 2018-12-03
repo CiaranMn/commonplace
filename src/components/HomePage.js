@@ -16,7 +16,7 @@ import updateResults from '../actions/updateResults'
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
 import EntryCard from './EntryCard'
 import QueryModal from './QueryModal'
-import { globalStyles, borderColor } from '../config/globalStyles'
+import { borderColor } from '../config/globalStyles'
 
 class HomePage extends React.Component {
 
@@ -24,11 +24,11 @@ class HomePage extends React.Component {
     title: 'Commonplace',
     headerRight: 
       <SearchIconAndStatusColor navigation={navigation}
-        statusBarColor={navigation.getParam('statusBarColor', '#3C8C90')} />,
+        statusBarColor={navigation.getParam('statusBarColor')} />,
     headerStyle: { 
-      backgroundColor: navigation.getParam('primaryColor', '#3C8C90'),
+      backgroundColor: navigation.getParam('primaryColor'),
      },
-    headerTintColor: navigation.getParam('secondaryColor', '#fff')
+    headerTintColor: navigation.getParam('secondaryColor')
   })
 
   state = {
@@ -83,7 +83,13 @@ class HomePage extends React.Component {
   }
 
   editEntry = entry  => {
-    this.props.navigation.navigate('AddOrEditEntry', {entry})
+    const {primaryColor, secondaryColor, statusBarColor} = this.props.theme
+    this.props.navigation.navigate('AddOrEditEntry', {
+      entry,
+      primaryColor,
+      secondaryColor,
+      statusBarColor
+    })
   }
 
   shareEntry = entry => {

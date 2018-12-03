@@ -78,16 +78,13 @@ class SearchDrawer extends React.Component {
     const {
       deleteColor,
       bodyTextColor,
-      primaryColor,
+      buttonPrimary,
       bodyBackgroundColor
     } = this.props.theme
 
     return (
 
-      <SafeAreaView 
-        style={styles.container}
-        name="_safeAreaView"
-        >
+      <SafeAreaView style={styles.container}>
 
         <View style={[
           styles.formContainer,
@@ -130,11 +127,10 @@ class SearchDrawer extends React.Component {
               />
               <Button
                 buttonText="Search"
-                buttonColor={primaryColor}
+                buttonColor={buttonPrimary}
                 onPress={this.search}
               />
             </View>
-
 
             <View style={styles.marginBottom}>
               <FieldPicker
