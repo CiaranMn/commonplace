@@ -11,6 +11,7 @@ const TabBar = (props) => {
       activeBackgroundColor={primaryColor}
       inactiveTintColor={primaryColor}
       inactiveBackgroundColor={secondaryColor}
+      style={{backgroundColor: secondaryColor}}
   />
 }
 

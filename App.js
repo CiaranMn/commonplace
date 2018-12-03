@@ -9,17 +9,17 @@ import DrawerNavigator from './src/navigators/DrawerNavigator'
 import rootReducer from './src/reducers'
 import {Entry, Author, Category, Source, Tag} from './src/models/realm'
 
-// AsyncStorage.getItem('theme')
-//   .then(theme => {
-//     theme = (JSON.parse(theme))
-//     if (theme !== undefined) {
-//       store.dispatch({
-//         type: 'UPDATE_THEME',
-//         theme
-//       })
-//     }
-//   })
-//   .catch(err => alert(err.message))
+AsyncStorage.getItem('theme')
+  .then(theme => {
+    theme = (JSON.parse(theme))
+    if (theme !== null) {
+      store.dispatch({
+        type: 'UPDATE_THEME',
+        theme
+      })
+    }
+  })
+  .catch(err => alert(err.message))
 
 // N.B Seeds will wipe existing database!
 require('./src/db/seeds')

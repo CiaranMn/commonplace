@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
+import ThemeButton from './ThemeButton'
 import Button from './Button'
 
 import {themes, globalStyles} from '../config/globalStyles'
@@ -40,9 +41,7 @@ class Settings extends React.Component {
   }
 
   updateAndSaveTheme = theme => {
-    console.log(theme)
     this.props.updateTheme(theme)
-    console.log(JSON.stringify(theme))
     AsyncStorage.setItem('theme', JSON.stringify(theme))
       .catch(err => alert(err.message))
   }
@@ -57,11 +56,11 @@ class Settings extends React.Component {
     let buttons = []
     for (let theme in themes) {
       buttons.push(
-        <Button 
+        <ThemeButton 
           onPress={() => this.updateAndSaveTheme(themes[theme])}
-          buttonColor={themes[theme].primaryColor}
-          buttonText={theme}
+          name={theme}
           key={theme}
+          theme={themes[theme]}
           />
       )
     }
@@ -74,14 +73,14 @@ class Settings extends React.Component {
 
     return (
       <View style={[styles.home, {backgroundColor: bodyBackgroundColor}]}>
-        <View>
+        <View style={{height: "50%"}}>
           <Text style={[
             globalStyles.label,
             {color: bodyTextColor}
             ]}>
             Theme
           </Text>
-          <View>
+          <View style={styles.themesContainer}>
             {this.renderThemeButtons()}
           </View>
 
@@ -97,6 +96,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 20,
+    width: "100%"
+  },
+  themesContainer: {
+    height: "50%",
+    width: "90%",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   }
 })
 

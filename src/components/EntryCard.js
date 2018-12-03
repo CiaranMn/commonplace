@@ -81,7 +81,6 @@ export default EntryCard = ({
         >
           <Image
             source={whitePaper}
-            // resizeMode='contain'
             style={{flex: 1, height: undefined, width: undefined}}
             borderRadius={12}
           />
@@ -111,7 +110,7 @@ export default EntryCard = ({
         }}>
           <View style={{width: "90%"}}>
             {entry.reference &&
-              <Text note style={{marginBottom: 5}}>
+              <Text note style={{marginBottom: 2}}>
                 {entry.reference}
               </Text>
             }

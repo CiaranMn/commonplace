@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from 'react-navigation'
 import { HomeStack, AddStack, SettingsStack } from './StackNavigators'
 import TabBar from '../components/TabBar'
 
-import { primaryColor, secondaryColor, outlineColor } from '../config/globalStyles'
+import { borderColor } from '../config/globalStyles'
 
 export const footerHeight = Math.min(Dimensions.get('window').height * 0.7, 50)
 
@@ -42,7 +42,7 @@ export const TabNavigator = createBottomTabNavigator({
         showLabel={false}
         style={{
           height: footerHeight,
-          borderColor: outlineColor,
+          borderColor,
           borderWidth: 0,
           borderTopWidth: 1
         }}/>,

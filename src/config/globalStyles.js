@@ -47,6 +47,15 @@ export const themes = {
     bodyTextColor: "#BD7732",
     statusBarText: "light-content",
     deleteColor: "#B84D0E"
+  },
+  dark: {
+    primaryColor: 'rgb(33,37,42)',
+    secondaryColor: 'rgb(191,133,214)',
+    bodyBackgroundColor: 'rgb(40,45,50)',
+    statusBarColor: '#4F4D4D',
+    bodyTextColor: "rgb(94,177,230)",	
+    statusBarText: "light-content",
+    deleteColor: "#B72C16"
   }
 }
 
@@ -57,6 +66,10 @@ export const globalStyles = StyleSheet.create({
     borderColor,
     backgroundColor: '#fff',
     width: "75%"
+  },
+  note: {
+    fontSize: 12,
+    color: borderColor
   },
   selectInput: {
     justifyContent: 'center',

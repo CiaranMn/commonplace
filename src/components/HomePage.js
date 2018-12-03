@@ -18,8 +18,6 @@ import EntryCard from './EntryCard'
 import QueryModal from './QueryModal'
 import { globalStyles, borderColor } from '../config/globalStyles'
 
-import getSettings from '../lib/getSettings'
-
 class HomePage extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
@@ -35,15 +33,11 @@ class HomePage extends React.Component {
 
   state = {
     modalVisible: false,
-    ready: false
   }
 
   constructor(props) {
     super(props)
     this.updateHeaderTheme()
-    this.state = {
-      ready: getSettings()
-    }
   }
 
   updateHeaderTheme = () => {
@@ -145,11 +139,6 @@ class HomePage extends React.Component {
       </View>
     }
 
-    if (this.state.ready !== 'done') {
-      console.log('here 149')
-      return <View></View>
-    } else {
-
     return (
       <View style={[styles.home, {backgroundColor: bodyBackgroundColor}]}>
           <Swiper
@@ -188,8 +177,8 @@ class HomePage extends React.Component {
         />
       </View>
     )
-    }
   }
+  
 }
 
 const {width, height} = Dimensions.get('screen')
@@ -199,7 +188,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     paddingTop: height * 0.02,
-    paddingBottom: height * 0.03,
+    paddingBottom: height * 0.025,
     paddingHorizontal: width * 0.03,
   }, 
   navButtons: {

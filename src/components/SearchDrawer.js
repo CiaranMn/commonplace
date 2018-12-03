@@ -107,7 +107,7 @@ class SearchDrawer extends React.Component {
             ]} > 
               <Icon name="ios-search" />
               <Input 
-                placeholder="Search entry content" 
+                placeholder="Search content" 
                 value={this.state.content}
                 onChangeText={content => this.setState({content})}
                 onSubmitEditing={this.search}
@@ -210,7 +210,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   formContainer: {
-    marginTop: headerHeight,
     justifyContent: 'flex-start',
     alignItems: 'center',
     borderRadius: 10,

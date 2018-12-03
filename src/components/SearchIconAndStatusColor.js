@@ -10,15 +10,17 @@ import {
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import {outlineColor} from '../config/globalStyles'
+import {borderColor} from '../config/globalStyles'
 
-const searchIcon = <Icon
-  name="md-search"
-  color={"#fff"}
-  size={30}
-/>
 
-const SearchIconAndStatusColor = ({navigation, statusBarColor}) => {
+
+const SearchIconAndStatusColor = ({navigation, statusBarColor, theme}) => {
+
+  const searchIcon = <Icon
+    name="md-search"
+    color={theme.secondaryColor}
+    size={30}
+  />
 
   return (
     <View style={{ marginRight: 14 }}>
@@ -34,7 +36,7 @@ const SearchIconAndStatusColor = ({navigation, statusBarColor}) => {
         </TouchableOpacity>
         :
         <TouchableNativeFeedback onPress={navigation.openDrawer}
-          background={TouchableNativeFeedback.Ripple(outlineColor, true)}>
+          background={TouchableNativeFeedback.Ripple(borderColor, true)}>
           <View>
             {searchIcon}
           </View>
