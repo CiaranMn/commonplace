@@ -38,9 +38,9 @@ export default ThemeButton = ({ onPress, theme, name }) => (
 
 const styles = StyleSheet.create({
   container: {
-    width: "30%",
+    width: "28%",
     aspectRatio: 1.6 / 1,
-    marginHorizontal: 5,
+    marginHorizontal: 6,
     marginVertical: 10,
     justifyContent: "center",
     alignItems: "center",

@@ -36,12 +36,12 @@ export const themes = {
   red: {
     primaryColor: '#C12E2E',
     secondaryColor: '#fff',
-    bodyBackgroundColor: '#FFF2D3',
+    bodyBackgroundColor: '#FCF9E3',
     statusBarColor: '#E73E3E',
     bodyTextColor: "#4E1515",
     statusBarText: "light-content",
     deleteColor: "#D90000",
-    buttonPrimary: '#E57B22'
+    buttonPrimary: '#9F5889'
   },
   gold: {
     primaryColor: '#CAA36B',

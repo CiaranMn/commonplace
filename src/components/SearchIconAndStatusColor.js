@@ -12,8 +12,6 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 import {borderColor} from '../config/globalStyles'
 
-
-
 const SearchIconAndStatusColor = ({navigation, statusBarColor, theme}) => {
 
   const searchIcon = <Icon

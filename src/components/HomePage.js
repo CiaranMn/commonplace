@@ -135,6 +135,9 @@ class HomePage extends React.Component {
 
     const { bodyTextColor, bodyBackgroundColor, primaryColor, secondaryColor } = this.props.theme
 
+    let{ showNavButtons, entryFontSize } = this.props.settings
+    entryFontSize = parseInt(entryFontSize)
+
     const renderPagination = (index, total, context) => {
       return <View style={[styles.paginationStyle, { backgroundColor: secondaryColor, borderColor }]}>
         {/* <TouchableOpacity activeOpacity={0.7} onPress={this.toggleModal}> */}
@@ -154,7 +157,7 @@ class HomePage extends React.Component {
             loadMinimalSize={2}
             showsPagination={true}
             renderPagination={renderPagination}
-            showsButtons={false}
+            showsButtons={showNavButtons}
             nextButton={<Text style={[
               styles.navButtons, 
               {color: primaryColor}
@@ -173,6 +176,7 @@ class HomePage extends React.Component {
                 navigation={this.props.navigation}
                 key={entry.id}
                 theme={this.props.theme}
+                entryFontSize={entryFontSize}
               />
               )}
           </Swiper>
@@ -214,13 +218,14 @@ const styles = StyleSheet.create({
   }
 })
 
-mapStateToProps = ({ authors, categories, results, sources, tags, query, theme }) => ({
+mapStateToProps = ({ authors, categories, results, sources, tags, query, settings, theme }) => ({
   authors,
   categories,
   results,
   sources,
   query,
   tags,
+  settings,
   theme
 })
 

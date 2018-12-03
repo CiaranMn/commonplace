@@ -20,6 +20,7 @@ import { borderColor } from '../config/globalStyles'
 
 export default EntryCard = ({
   entry, 
+  entryFontSize,
   confirmDelete, 
   editEntry, 
   shareEntry,
@@ -92,7 +93,7 @@ export default EntryCard = ({
           backgroundColor: 'transparent'
         }}>
           <Text style={{
-            fontSize: 17,
+            fontSize: entryFontSize,
             marginBottom: 10,
             fontFamily: 'Poppins'
            }}>

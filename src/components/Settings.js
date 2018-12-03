@@ -2,13 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {
   AsyncStorage,
-  Platform,
   ScrollView,
   StyleSheet,
   Switch,
   Text,
+  TouchableOpacity,
   View
 } from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
 import ThemeButton from './ThemeButton'
@@ -37,7 +38,7 @@ class Settings extends React.Component {
     this.state = {
       showNavButtons: props.settings.showNavButtons || false,
       quickBrowse: props.settings.quickBrowse || true,
-      entryFontSize: props.settings.entryFontSize || 15,
+      entryFontSize: props.settings.entryFontSize || 17,
       homePageEntries: props.settings.homePageEntries || 'Oldest first'
     }
   }
@@ -55,7 +56,7 @@ class Settings extends React.Component {
       this.updateHeaderTheme()
     }
     if (prevState !== this.state) {
-      this.props.updateSettings(this.state)
+      this.updateAndSaveSettings()
     }
   }
 
@@ -80,6 +81,12 @@ class Settings extends React.Component {
       .catch(err => alert(err.message))
   }
 
+  updateAndSaveSettings = () => {
+    this.props.updateSettings(this.state)
+    AsyncStorage.setItem('settings', JSON.stringify(this.state))
+      .catch(err => alert(err.message))
+  }
+
   render() {
 
     const {
@@ -88,12 +95,24 @@ class Settings extends React.Component {
       primaryColor,
       buttonPrimary
     } = this.props.theme
+
     const {
       showNavButtons,
       quickBrowse,
       entryFontSize,
       homePageEntries
     } = this.props.settings
+
+    const helpIcon = callback => (
+        <TouchableOpacity>
+          <Icon
+          name="md-help-circle"
+          color={bodyTextColor}
+          size={22}
+          style={{ marginLeft: 10 }}
+          />
+        </TouchableOpacity>
+    )
 
     return (
       <View style={{ flex: 1, backgroundColor: bodyBackgroundColor}}>
@@ -127,27 +146,30 @@ class Settings extends React.Component {
               trackColor={{true: primaryColor}}
             />
             <Text style={{ color: bodyTextColor, fontSize: 15 }}>
-              Show next and previous buttons
+              Next and previous buttons
             </Text>
+            {helpIcon()}
           </View>
           <View style={styles.settingGroup}>
- 
-            <Switch
-              value={showNavButtons}
-              onValueChange={showNavButtons => this.setState({ showNavButtons })}
-              style={{
-                transform: [{ scaleX: .8 }, { scaleY: .8 }],
-                marginRight: 5
-              }}
-              trackColor={{ true: primaryColor }}
-            />
+            <View style={{ width: '50%', marginRight: 15 }}>
+              <FieldPicker
+                type={"font size"}
+                options={["10", "11", "12", "13", "14", "15", "16", "17", "18"]}
+                selection={entryFontSize.toString()}
+                handleChange={entryFontSize => 
+                  this.setState({ entryFontSize: parseInt(entryFontSize) })}
+                bodyTextColor={bodyTextColor}
+                enabled
+              />
+            </View>
             <Text style={{ color: bodyTextColor, fontSize: 15 }}>
-              Font size for entry content
+              Font size
             </Text>
+            {helpIcon()}
           </View>
 
           <View style={styles.settingGroup}>
-            <View style={{width: '90%', marginRight: 15}}>
+            <View style={{width: '50%', marginRight: 15}}>
               <FieldPicker
                 type={"Default"}
                 options={[
@@ -164,6 +186,10 @@ class Settings extends React.Component {
                 enabled
               />
             </View>
+            <Text style={{ color: bodyTextColor, fontSize: 15 }}>
+              Default display
+            </Text>
+            {helpIcon()}
           </View>
 
           <Text style={[
@@ -185,39 +211,46 @@ class Settings extends React.Component {
             <Text style={{ color: bodyTextColor, fontSize: 15 }}>
               Quick browse entries
             </Text>
+            {helpIcon()}
+
           </View>
 
+          <View style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: 25,
+              marginBottom: 15
+           }}>
             <Text style={[
               globalStyles.label,
-              { color: bodyTextColor,
-                marginTop: 25,
-                marginBottom: 20
-              },
+              { color: bodyTextColor},
             ]}>
               Import / Export data
             </Text>
-            <View style={[
-                globalStyles.formItem,
-                {
-                  justifyContent: 'space-around',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  width: "100%",
-                  marginBottom: 15
-                }
-              ]}>
-                <Button
-                  buttonText="Import"
-                  buttonColor={buttonPrimary}
-                  onPress={() => alert('import')}
-                />
-                <Button
-                  buttonText="Export"
-                  buttonColor={buttonPrimary}
-                  onPress={() => alert('export')}
-                />
-              </View>
-            
+            {helpIcon()}
+          </View>
+          <View style={[
+              globalStyles.formItem,
+              {
+                justifyContent: 'space-around',
+                flexDirection: 'row',
+                alignItems: 'center',
+                width: "100%",
+                marginBottom: 20
+              }
+            ]}>
+              <Button
+                buttonText="Import"
+                buttonColor={bodyTextColor}
+                onPress={() => alert('import')}
+              />
+              <Button
+                buttonText="Export"
+                buttonColor={buttonPrimary}
+                onPress={() => alert('export')}
+              />
+            </View>
+          
           </View>
         </View>
       </ScrollView>
@@ -237,6 +270,7 @@ const styles = StyleSheet.create({
   themesContainer: {
     width: "100%",
     flexDirection: 'row',
+    justifyContent: 'center',
     flexWrap: 'wrap',
     marginBottom: 10,
   },

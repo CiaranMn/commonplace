@@ -2,28 +2,15 @@ import React from 'react';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { createAppContainer } from 'react-navigation'
-import { AsyncStorage } from 'react-native'
 import { Root } from 'native-base'
 
 import DrawerNavigator from './src/navigators/DrawerNavigator'
 import rootReducer from './src/reducers'
 import {Entry, Author, Category, Source, Tag} from './src/models/realm'
+import getSettings from './src/lib/getSettings'
 
-let theme
-AsyncStorage.getItem('theme')
-  .then(savedTheme => {
-    theme = (JSON.parse(savedTheme))
-    if (theme !== null) {
-      store.dispatch({
-        type: 'UPDATE_THEME',
-        theme
-      })
-    }
-    ready = true
-  })
-  .catch(err => alert(err.message))
+getSettings()
 
-// N.B Seeds will wipe existing database!
 require('./src/db/seeds')
 
 const authors = Author.getAuthors()

@@ -19,7 +19,6 @@ import updateResults from '../actions/updateResults'
 
 import { globalStyles, borderColor } from '../config/globalStyles';
 
-import { headerHeight } from '../navigators/StackNavigators'
 import DatePickerInput from './DatePicker'
 import FieldPicker from './FieldPicker'
 import Button from './Button'
