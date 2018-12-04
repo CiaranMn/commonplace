@@ -1,8 +1,9 @@
 import RNFS from 'react-native-fs'
 import { Platform } from 'react-native'
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker'
+import Papa from 'papaparse'
 
-import { realm } from './realm'
+import { realm } from '../models/realm'
 
 export const importFile = () => {
 
@@ -27,7 +28,9 @@ export const exportFile = async () => {
   await RNFS.mkdir(basePath + '/commonplace')
   path = basePath + '/commonplace/commonplace.csv'
 
-  RNFS.writeFile(path, 'Testing out again', 'utf8')
+  let contents = Papa.unparse(writeCsv())
+
+  RNFS.writeFile(path, contents, 'utf8')
     .then((success) => {
       alert('FILE WRITTEN!')
     })
@@ -39,5 +42,38 @@ export const exportFile = async () => {
 
 function writeCsv() {
 
-  let entries = 
+  let data = []
+
+  let entries = Array.prototype.slice.call(realm.objects('Entry'))
+  entries.forEach(entry => {
+    let entryTags = entry.tags.map(tag => tag.name)
+    let entryData = [
+      entry.id || null,
+      entry.content || null,
+      entry.author ? entry.author.name : null,
+      entry.category ? entry.category.name : null,
+      entryTags || null,
+      entry.source ? entry.source.name : null,
+      entry.date || null,
+      entry.dateCreated || null
+    ]
+    data.push(entryData)
+  })
+
+  let csvObject = {
+    fields: [
+      "id",
+      "content",
+      "author",
+      "category",
+      "tags",
+      "source",
+      "reference",
+      "date",
+      "dateCreated"
+    ],
+    data
+  }
+  return csvObject
+
 }

@@ -16,7 +16,7 @@ import {
 
 import moment from 'moment'
 
-import whitePaper from '../../assets/white-oxford.jpg'
+import whitePaper from '../../assets/white-oxford2.jpg'
 import { borderColor } from '../config/globalStyles'
 
 const EntryCard = ({
