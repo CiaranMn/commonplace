@@ -19,7 +19,8 @@ import moment from 'moment'
 import Tags from 'react-native-tags'
 import ImagePicker from 'react-native-image-picker'
 
-import SearchIconAndStatusColor from './SearchIconAndStatusColor';
+import SearchIconAndStatusColor from './SearchIconAndStatusColor'
+import VoiceRecorder from './VoiceRecorder'
 import DatePickerInput from './DatePicker'
 import FieldPicker from './FieldPicker'
 import NewInput from './NewInput'
@@ -28,8 +29,7 @@ import Button from './Button'
 import imageToText from '../lib/imageToText'
 import showToast from '../lib/showToast'
 import { Entry } from '../models/realm'
-
-import {globalStyles} from '../config/globalStyles'
+import { globalStyles } from '../config/globalStyles'
 
 class AddOrEditEntry extends React.Component {
 
@@ -84,12 +84,15 @@ class AddOrEditEntry extends React.Component {
          entry.tags.map(tag => tag.name) 
          : 
          [],
-      tagText: ''
+      tagText: '',
+      recording: false
     }
   }
 
   componentDidMount() {
-    this._blurListener = this.props.navigation.addListener('didBlur', this.scrollToTop)
+    this._blurListener = this.props.navigation.addListener(
+      'didBlur', this.scrollToTop
+      )
   }
 
   componentWillUnmount() {
@@ -151,7 +154,8 @@ class AddOrEditEntry extends React.Component {
       newSourceText: '',
       reference: '',
       tags: [],
-      tagText: ''
+      tagText: '',
+      recording: false
     })
   }
 
@@ -182,6 +186,12 @@ class AddOrEditEntry extends React.Component {
     })
   }
 
+  addSpeechResults = results => {
+    this.setState({
+      content: this.state.content += results
+    })
+  }
+
   render() {
 
     const {bodyTextColor, primaryColor, bodyBackgroundColor, deleteColor, buttonPrimary} = this.props.theme
@@ -199,24 +209,33 @@ class AddOrEditEntry extends React.Component {
 
           <View style={styles.contentContainer}>
             <View style={styles.contentHeader}>
-              <View style={{ width: "80%" }}>
+              <View style={{ width: "50%" }}>
                 <Label style={[globalStyles.label, {color: bodyTextColor}]}>
                   Content
                 </Label>
               </View>
-              <View style={{ flexDirection: 'row' }}>
+              <View style={{ 
+                width: "50%",
+                flexDirection: 'row', 
+                justifyContent: 'space-between'
+                }}>
                 <TouchableOpacity
                   activeOpacity={0.5}
-                  onPress={() => alert('voice')}>
+                  onPress={() => this.setState({content: ''})}>
                   <Icon
-                    ios={"microphone"}
-                    android={"microphone"}
+                    ios={"trash"}
+                    android={"trash"}
                     type={"FontAwesome"}
                     style={{
-                      color: bodyTextColor,
-                      fontSize: 24
+                      color: deleteColor,
+                      fontSize: 25,
                     }} />
                 </TouchableOpacity>
+                <VoiceRecorder
+                  onColor={deleteColor}
+                  offColor={bodyTextColor}
+                  addSpeechResults={this.addSpeechResults}
+                />
                 <TouchableOpacity
                   activeOpacity={0.5}
                   onPress={this.pickImage}>
@@ -227,7 +246,6 @@ class AddOrEditEntry extends React.Component {
                     style={{
                       color: bodyTextColor,
                       fontSize: 24,
-                      marginLeft: 18
                     }} />
                 </TouchableOpacity>
               </View>

@@ -26,10 +26,10 @@ export default class Entry extends Realm.Object {
     let results
     switch (sort) {
       case 'Oldest first':
-        results = realm.objects('Entry').sorted('date')
+        results = realm.objects('Entry').sorted('date', true)
         break
       case 'Newest first':
-        results = realm.objects('Entry').sorted('date', true)
+        results = realm.objects('Entry').sorted('date')
         break
       case 'By Category':
         results = realm.objects('Entry').sorted('category.name')
@@ -84,8 +84,9 @@ export default class Entry extends Realm.Object {
 
   static createOrUpdate(object, update = false) {
     const now = new Date()
+    let entry
     realm.write(() => {
-      let entry = realm.create('Entry', {
+      entry = realm.create('Entry', {
         id:
           update ?
             update
@@ -93,9 +94,7 @@ export default class Entry extends Realm.Object {
         content:
           object.content,
         author:
-          object.author ?
-            realm.create('Author', { name: object.author }, true)
-            : null,
+          realm.create('Author', { name: object.author || 'Unknown'}, true),
         category:
           realm.create('Category', { name: object.category || "Quote" }, true),
         source:
@@ -123,15 +122,16 @@ export default class Entry extends Realm.Object {
         })
       }
     })
+    return entry
   }
 
   static createOrUpdateWithAlerts(object, update = false) {
     try {
-      this.createOrUpdate(object, update)
+      let entry = this.createOrUpdate(object, update)
       showToast(update ? "Entry updated" : "Entry added", "success")
       !update && store.dispatch({
         type: "ADD_RESULTS",
-        results: Entry.getEntries().slice(-1)
+        results: [entry]
       })
       this.updateLists()
     } catch (error) {

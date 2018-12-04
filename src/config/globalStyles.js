@@ -20,7 +20,7 @@ export const themes = {
     bodyTextColor: "#0C2962",
     statusBarColor: '#276BC9',
     statusBarText: "light-content",
-    deleteColor: "#E70D0D",
+    deleteColor: "#AD0A0F",
     buttonPrimary: '#2A4C90'
   }, 
   black: {
@@ -40,7 +40,7 @@ export const themes = {
     statusBarColor: '#E73E3E',
     bodyTextColor: "#4E1515",
     statusBarText: "light-content",
-    deleteColor: "#D90000",
+    deleteColor: "#BE1515",
     buttonPrimary: '#9F5889'
   },
   gold: {

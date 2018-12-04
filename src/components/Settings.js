@@ -185,7 +185,7 @@ class Settings extends React.Component {
               />
             </View>
             <Text style={{ color: bodyTextColor, fontSize: 15 }}>
-              Default display
+              Default 
             </Text>
             {helpIcon()}
           </View>

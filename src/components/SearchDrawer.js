@@ -14,6 +14,7 @@ import {
   Item,
   Label,
 } from 'native-base'
+import {NavigationEvents} from 'react-navigation'
 
 import {Entry, realm} from '../models/realm'
 import updateResults from '../actions/updateResults'
@@ -33,6 +34,7 @@ class SearchDrawer extends React.Component {
       category: null,
       dateFrom: null,
       dateTo: null,
+      focus: false,
       author: null,
       source: null,
       tag: null
@@ -41,6 +43,9 @@ class SearchDrawer extends React.Component {
   }
 
   quickBrowse = (type, value) => {
+    // check for focus to avoid quick browse being triggered by new 
+    // authors/tags/sources being added with update to entries
+    if (!this.state.focus) { return }
     let results = realm.objectForPrimaryKey(type, value).entries
     this.props.updateResults(results, { [type]: value } )
     this.props.navigation.navigate('Home')
@@ -95,6 +100,10 @@ class SearchDrawer extends React.Component {
 
       <SafeAreaView style={styles.container}>
 
+        <NavigationEvents
+          onDidFocus={() => this.setState({ focus: true })}
+          onDidBlur={() => this.setState({ focus: false })}
+        />
         <View style={[
           styles.formContainer,
           {
@@ -123,10 +132,10 @@ class SearchDrawer extends React.Component {
 
             <View style={[
               globalStyles.formItem,
-              styles.marginBottom,
               {
                 justifyContent: 'space-between',
                 flexDirection: 'row',
+                marginBottom: 20
               }
             ]}>
               <Button

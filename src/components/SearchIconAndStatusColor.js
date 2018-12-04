@@ -21,7 +21,7 @@ const SearchIconAndStatusColor = ({navigation, statusBarColor, theme}) => {
   />
 
   return (
-    <View style={{ marginRight: 14 }}>
+    <View style={{ marginRight: 20 }}>
       <StatusBar
         backgroundColor={statusBarColor}
         barStyle={'light-content'}

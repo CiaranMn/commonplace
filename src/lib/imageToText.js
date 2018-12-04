@@ -1,3 +1,5 @@
+import showToast from "./showToast";
+
 export default imageToText = (imageBase64) => {
 
   const apiKey = ""
@@ -30,18 +32,21 @@ export default imageToText = (imageBase64) => {
     })
     .then(resp => resp.json())
     .then(resp => {
-      if (resp.responses.every(response => 
-        Object.keys(response).length === 0 
-        || 
-        !!response.error
-      )) {
+      if (resp.error) {
+        return Promise.reject('Could not access image recognition server')
+      } else if (resp.responses.every(response => 
+          Object.keys(response).length === 0 
+          || 
+          !!response.error
+        )) {
         return Promise.reject('Could not read text from image.')
       } else { 
-          let text
+          let text = ""
           resp["responses"].forEach(response => {
             if (response.fullTextAnnotation) {
-              text = response.fullTextAnnotation.text.slice(0)
-          }
+              let newText = response.fullTextAnnotation.text.slice(0)
+              if (newText.length > text.length) { text = newText }
+            }
           })
           return Promise.resolve(text)
         }

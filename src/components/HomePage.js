@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { Icon } from 'native-base'
 import Swiper from 'react-native-swiper'
 
 import { realm, Entry } from '../models/realm'
@@ -112,7 +113,7 @@ class HomePage extends React.Component {
 
   shareEntry = entry => {
     let message = `"${entry.content}" - ${entry.author.name}`
-    message += entry.source ? ` (${entry.source.name})` : null
+    message += entry.source ? ` (${entry.source.name})` : ''
     Share.share({
       message,
       title: "Check out this quote"
@@ -188,20 +189,26 @@ class HomePage extends React.Component {
         renderPagination={renderPagination}
         showsButtons={showNavButtons}
         nextButton={
-          <Text style={[
-            styles.navButtons, 
-            {color: primaryColor}
-          ]}>
-            ›
-          </Text>
+          <Icon
+            ios={"arrow-right"}
+            android={"arrow-right"}
+            type={"FontAwesome"}
+            style={{
+              color: bodyTextColor,
+              fontSize: 26,
+              marginRight: 12
+            }} />
         }
         prevButton={
-          <Text style={[
-            styles.navButtons,
-            { color: primaryColor }
-          ]}>
-          ‹
-          </Text>
+            <Icon
+              ios={"arrow-left"}
+              android={"arrow-left"}
+              type={"FontAwesome"}
+              style={{
+              color: bodyTextColor,
+              fontSize: 26,
+              marginLeft: 12
+              }} />
         }
       >
         {this.props.results.map(entry =>
@@ -224,7 +231,7 @@ const {width, height} = Dimensions.get('screen')
 
 const styles = StyleSheet.create({
   navButtons: {
-    fontSize: 50,
+    fontSize: 60,
   },
   paginationStyle: {
     position: 'absolute',
