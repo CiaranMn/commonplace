@@ -18,6 +18,7 @@ import FieldPicker from './FieldPicker'
 
 import {themes, globalStyles} from '../config/globalStyles'
 import updateTheme from '../actions/updateTheme'
+import {importFile, exportFile} from '../lib/importExport'
 
 class Settings extends React.Component {
 
@@ -240,12 +241,12 @@ class Settings extends React.Component {
               <Button
                 buttonText="Import"
                 buttonColor={bodyTextColor}
-                onPress={() => alert('import')}
+                onPress={() => importFile()}
               />
               <Button
                 buttonText="Export"
                 buttonColor={buttonPrimary}
-                onPress={() => alert('export')}
+                onPress={() => exportFile()}
               />
             </View>
           

@@ -17,7 +17,7 @@ import updateResults from '../actions/updateResults'
 
 import SearchIconAndStatusColor from './SearchIconAndStatusColor'
 import EntryCard from './EntryCard'
-import QueryModal from './QueryModal'
+import HelpModal from './HelpModal'
 import { borderColor } from '../config/globalStyles'
 
 class HomePage extends React.Component {
@@ -169,7 +169,7 @@ class HomePage extends React.Component {
           <Text style={[styles.paginationText, { color: bodyTextColor }]}>
             {index + 1} of {total}
           </Text>
-          <QueryModal
+          <HelpModal
             visible={this.state.modalVisible}
             closeModal={this.toggleModal}
             bodyTextColor={bodyTextColor}

@@ -30,10 +30,10 @@
 	<string>$(PRODUCT_NAME) would like to use your camera for image-to-text capture</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
-  <key>NSMicrophoneUsageDescription</key>
-  <string>$(PRODUCT_NAME) would like to use your microphone for voice-to-text</string>
-  <key>NSSpeechRecognitionUsageDescription</key>
-  <string>$(PRODUCT_NAME) would like to use speech recognition for voice-to-text</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your microphone for voice-to-text</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use speech recognition for voice-to-text</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
 	<key>UILaunchStoryboardName</key>

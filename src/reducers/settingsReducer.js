@@ -1,7 +1,7 @@
 const defaultSettings = {
   showNavButtons: false,
   quickBrowse: true,
-  entryFontSize: 15,
+  entryFontSize: 17,
   homePageEntries: 'Oldest first'
 }
 

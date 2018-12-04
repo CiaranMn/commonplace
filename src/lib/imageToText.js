@@ -1,5 +1,3 @@
-import showToast from "./showToast";
-
 export default imageToText = (imageBase64) => {
 
   const apiKey = ""

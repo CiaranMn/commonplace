@@ -3,6 +3,8 @@ package com.commonplace;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
+import com.rnfs.RNFSPackage;
 import com.wenkesj.voice.VoicePackage;
 import io.realm.react.RealmReactPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -27,6 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeDocumentPicker(),
+            new RNFSPackage(),
             new VoicePackage(),
             new RealmReactPackage(),
             new ImagePickerPackage(),

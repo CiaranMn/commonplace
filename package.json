@@ -14,6 +14,8 @@
     "react": "16.6.1",
     "react-native": "0.57.7",
     "react-native-datepicker": "^1.7.2",
+    "react-native-document-picker": "^2.1.0",
+    "react-native-fs": "^2.12.1",
     "react-native-gesture-handler": "^1.0.9",
     "react-native-image-picker": "^0.27.1",
     "react-native-swiper": "git://github.com/CiaranMn/react-native-swiper.git",
