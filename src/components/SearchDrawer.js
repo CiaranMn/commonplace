@@ -4,6 +4,7 @@ import {
   Keyboard,
   SafeAreaView,
   StyleSheet,
+  Text,
   View
 } from 'react-native'
 import {
@@ -141,6 +142,33 @@ class SearchDrawer extends React.Component {
             </View>
 
             <View style={styles.marginBottom}>
+              <Item style={[globalStyles.formItem, globalStyles.alignRight]}>
+                <Label style={[globalStyles.label, { color: bodyTextColor }]}>
+                  From
+                </Label>
+                <DatePickerInput
+                  date={this.state.dateFrom}
+                  changeDate={dateFrom => this.setState({ dateFrom })} />
+              </Item>
+            </View>
+            <View style={styles.marginBottom}>
+              <Item style={[globalStyles.formItem, globalStyles.alignRight]}>
+                <Label style={[globalStyles.label, { color: bodyTextColor }]}>
+                  To
+              </Label>
+                <DatePickerInput
+                  date={this.state.dateTo}
+                  changeDate={dateTo => this.setState({ dateTo })} />
+              </Item>
+            </View>
+
+            <View style={{alignItems: 'center', marginBottom: 10, marginTop: 10}}>
+              <Text style={[globalStyles.label, { color: bodyTextColor }]}>
+                {quickBrowse ? 'Quick browse' : 'Add filters to your search'}
+              </Text>
+            </View>
+
+            <View style={styles.marginBottom}>
               <FieldPicker
                 enabled
                 type="Category"
@@ -191,27 +219,6 @@ class SearchDrawer extends React.Component {
                 }}
                 bodyTextColor={bodyTextColor}
               />
-            </View>
-
-            <View style={styles.marginBottom}>
-              <Item style={[globalStyles.formItem, globalStyles.alignRight]}>
-                <Label style={[globalStyles.label, {color: bodyTextColor}]}>
-                  From
-              </Label>
-                <DatePickerInput
-                  date={this.state.dateFrom}
-                  changeDate={dateFrom => this.setState({ dateFrom })} />
-              </Item>
-            </View>
-            <View style={styles.marginBottom}>
-              <Item style={[globalStyles.formItem, globalStyles.alignRight]}>
-                <Label style={[globalStyles.label, { color: bodyTextColor }]}>
-                  To
-              </Label>
-                <DatePickerInput
-                  date={this.state.dateTo}
-                  changeDate={dateTo => this.setState({ dateTo })} />
-              </Item>
             </View>
 
           </Form>
