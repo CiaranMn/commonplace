@@ -6,7 +6,7 @@ import { Root } from 'native-base'
 
 import DrawerNavigator from './src/navigators/DrawerNavigator'
 import rootReducer from './src/reducers'
-import {Entry, Author, Category, Source, Tag} from './src/models/realm'
+import {Author, Category, Source, Tag} from './src/models/realm'
 import getSettings from './src/lib/getSettings'
 
 getSettings()
