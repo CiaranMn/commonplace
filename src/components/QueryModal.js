@@ -28,11 +28,31 @@ export default QueryModal = ({ visible, closeModal, bodyTextColor, query}) =>
       borderColor: bodyTextColor,
       borderWidth: 1,
       borderRadius: 8,
+      padding: 10,
        }}>
 
-      <Text>
-        You searched for '{query.content}'
-      </Text>
+        <Text style={{marginBottom:3}}>
+          You searched for entries containing: '{query.content}'
+        </Text>
+        <Text style={{ marginBottom: 3 }}>
+          Dated from: {query.dateFrom ? query.dateFrom : ' any'}
+        </Text>
+         <Text style={{ marginBottom: 3 }}>
+          Dated to: {query.dateFrom ? query.dateFrom : ' any'}
+        </Text>
+        <Text style={{marginBottom:3}}>
+          Category: {query.author ? query.category.name : ' any'}
+        </Text>
+        <Text style={{marginBottom:3}}>
+          Author: {query.author ? query.author.name : ' any'}
+        </Text>
+        <Text style={{marginBottom:3}}>
+          Source: {query.source ? query.source.name : ' any'}
+        </Text>
+        <Text style={{marginBottom:3}}>
+          Tag: {query.tag ? query.tag.name : ' any'}
+        </Text>
+
       <View style={{position: "absolute", top: 2, right: 2}}>
         <TouchableOpacity activeOpacity={0.8} onPress={closeModal}>
           <Icon 
@@ -43,5 +63,6 @@ export default QueryModal = ({ visible, closeModal, bodyTextColor, query}) =>
           />
         </TouchableOpacity>
       </View>
+
     </View>
   </Modal>

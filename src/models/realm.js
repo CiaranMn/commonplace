@@ -41,8 +41,11 @@ export class Entry extends Realm.Object {
         results = realm.objects('Entry').sorted('category.name')
         break
       case 'By Author':
-        results = realm.objects('Entry').sorted('author.name')
-        break
+        results = Array.prototype.slice.call(realm.objects('Entry'))
+        let sortedResults = results.sort((a, b) => 
+          a.author.lastname().localeCompare(b.author.lastname())
+        )
+        return sortedResults
       case 'By Source':
         results = realm.objects('Entry').sorted('source.name')
         break
@@ -155,7 +158,6 @@ export class Entry extends Realm.Object {
       }
           
       // TODO - ALSO CHECK TAGS and SOURCE FOR DELETION
-
       realm.delete(realm.objectForPrimaryKey('Entry', entry.id))
       showToast(
         authorDeleted ? "Entry and author deleted" : "Entry deleted",
@@ -205,11 +207,18 @@ export class Author extends Realm.Object {
   }
 
   static getAuthors() {
-    return realm.objects('Author').sorted('name').map(author => author.name)
+    return Array.prototype.slice.call(realm.objects('Author'))
+      .sort((a, b) =>
+        a.lastname().localeCompare(b.lastname())
+      )
+      .map(author => author.name)
+  }
+
+  lastname() {
+    return this.name ? this.name.split(" ").slice(-1)[0] : 'ZZZ'
   }
 
 }
-
 
 export class Category extends Realm.Object { 
 
@@ -227,11 +236,12 @@ export class Category extends Realm.Object {
   }
 
   static getCategories() {
-    return realm.objects('Category').sorted('name').map(author => author.name)
+    return realm.objects('Category')
+      .sorted('name')
+      .map(category => category.name)
   }
 
 }
-
 
 export class Tag { 
 
@@ -249,7 +259,9 @@ export class Tag {
   }
 
   static getTags() {
-    return realm.objects('Tag').sorted('name').map(author => author.name)
+    return realm.objects('Tag')
+      .sorted('name')
+      .map(tag => tag.name)
   }
 }
 
@@ -269,7 +281,9 @@ export class Source {
   }
 
   static getSources() {
-    return realm.objects('Source').sorted('name').map(author => author.name)
+    return realm.objects('Source')
+      .sorted('name')
+      .map(source => source.name)
   }
 
 }

@@ -1,9 +1,8 @@
 const blankEntry = {
-  author: {name: 'None found'},
+  author: {name: 'Nothing here'},
   content: 'There are no entries to show here - try adding more, or try a new search!',
   tags: [],
-  id: 404,
-  category: {name: 'None found'}
+  id: 404
 }
 
 export default resultsReducer = (state = [blankEntry], action) => {
