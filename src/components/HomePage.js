@@ -59,7 +59,8 @@ class HomePage extends React.Component {
       this.forceRefresh()
     }
     let {homePageEntries} = this.props.settings
-    if (prevProps.settings.homePageEntries !==  homePageEntries) {
+    if ((prevProps.settings.homePageEntries !==  homePageEntries) 
+         && !this.props.query.content) {
       this.props.updateResults(
         Entry.getEntries(homePageEntries)
       )
@@ -150,7 +151,11 @@ class HomePage extends React.Component {
 
   render() {
 
-    const { bodyTextColor, bodyBackgroundColor, primaryColor, secondaryColor }    = this.props.theme
+    const { 
+      bodyTextColor,
+      primaryColor, 
+      secondaryColor 
+    } = this.props.theme
     const {query} = this.props
     let { showNavButtons, entryFontSize } = this.props.settings
     

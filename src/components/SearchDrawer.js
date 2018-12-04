@@ -42,7 +42,7 @@ class SearchDrawer extends React.Component {
 
   quickBrowse = (type, value) => {
     let results = realm.objectForPrimaryKey(type, value).entries
-    this.props.updateResults(results)
+    this.props.updateResults(results, { [type]: value } )
     this.props.navigation.navigate('Home')
     this.clearAndClose()
   }
