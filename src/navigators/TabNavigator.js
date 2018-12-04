@@ -21,7 +21,7 @@ export const TabNavigator = createBottomTabNavigator({
     screen: SettingsStack,
   }
 }, {
-    order: ['Settings', 'Home', 'Add'],
+    order: ['Home', 'Add', 'Settings'],
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarButtonComponent: TouchableOpacity,
       tabBarIcon: ({ tintColor }) => {

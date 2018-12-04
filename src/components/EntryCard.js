@@ -122,7 +122,7 @@ const EntryCard = ({
               <ScrollView>
                 <Text note style={{fontWeight: 'bold'}}>
                   {
-                    entry.tags.length > 0 
+                    entry.tags && entry.tags.length > 0 
                     ? 
                     'Tags: ' + entry.tags.map(tag => tag.name).join(', ')
                     :
@@ -148,7 +148,8 @@ const EntryCard = ({
           </View>
           <View style={{width: "100%", alignItems: 'flex-start'}}>
             <Text note style={{fontWeight: 'bold'}}>
-              Date: {moment(entry.date || entry.dateCreated).format('DD-MM-YYYY')} | {entry.category.name}
+              Date: 
+                {moment(entry.date || entry.dateCreated).format(' DD-MM-YYYY')}{entry.category ? ' | ' + entry.category.name : null}
             </Text>
           </View>
         

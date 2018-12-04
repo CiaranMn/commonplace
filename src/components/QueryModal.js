@@ -6,12 +6,13 @@ import {
   View, 
   Dimensions
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 import {footerHeight} from '../navigators/TabNavigator'
 
 const {width, height} = Dimensions.get('screen')
 
-export default QueryModal = ({ visible, closeModal, bodyTextColor}) => 
+export default QueryModal = ({ visible, closeModal, bodyTextColor, query}) => 
   <Modal
     animationType="fade"
     transparent={true}
@@ -26,14 +27,20 @@ export default QueryModal = ({ visible, closeModal, bodyTextColor}) =>
       backgroundColor: "white",
       borderColor: bodyTextColor,
       borderWidth: 1,
-      borderRadius: 8
+      borderRadius: 8,
        }}>
 
-      <View style={{position: "absolute", bottom: 4, right: 8}}>
+      <Text>
+        You searched for '{query.content}'
+      </Text>
+      <View style={{position: "absolute", top: 2, right: 2}}>
         <TouchableOpacity activeOpacity={0.8} onPress={closeModal}>
-          <Text style={{color: bodyTextColor, fontSize: 20}}>
-            x
-          </Text>
+          <Icon 
+            color={bodyTextColor}
+            size={21}
+            name="md-close-circle"
+              x
+          />
         </TouchableOpacity>
       </View>
     </View>

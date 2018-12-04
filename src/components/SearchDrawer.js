@@ -14,7 +14,7 @@ import {
   Label,
 } from 'native-base'
 
-import {Entry} from '../models/realm'
+import {Entry, realm} from '../models/realm'
 import updateResults from '../actions/updateResults'
 
 import { globalStyles, borderColor } from '../config/globalStyles';
@@ -40,11 +40,8 @@ class SearchDrawer extends React.Component {
   }
 
   quickBrowse = (type, value) => {
-    switch (type) {
-      case 'category':
-        Entry.search({category: value})
-    }
-    // Entry.search({[type]: value})
+    let results = realm.objectForPrimaryKey(type, value).entries
+    this.props.updateResults(results)
     this.props.navigation.navigate('Home')
     this.clearAndClose()
   }
@@ -151,7 +148,7 @@ class SearchDrawer extends React.Component {
                 selection={this.state.category}
                 handleChange={category => {
                   this.setState({ category })
-                  quickBrowse && this.quickBrowse('category', category)
+                  quickBrowse && this.quickBrowse('Category', category)
                 }}
                 bodyTextColor={bodyTextColor}
               />
@@ -162,7 +159,10 @@ class SearchDrawer extends React.Component {
                 type="Author"
                 options={this.props.authors}
                 selection={this.state.author}
-                handleChange={author => this.setState({ author })}
+                handleChange={author => {
+                  this.setState({ author })
+                  quickBrowse && this.quickBrowse('Author', author)
+                }}
                 bodyTextColor={bodyTextColor}
               />
             </View>
@@ -172,7 +172,10 @@ class SearchDrawer extends React.Component {
                 type="Source"
                 options={this.props.sources}
                 selection={this.state.source}
-                handleChange={source => this.setState({ source })}
+                handleChange={source => {
+                  this.setState({ source })
+                  quickBrowse && this.quickBrowse('Source', source)
+                }}
                 bodyTextColor={bodyTextColor}
               />
             </View>
@@ -182,7 +185,10 @@ class SearchDrawer extends React.Component {
                 type="Tag"
                 options={this.props.tags}
                 selection={this.state.tag}
-                handleChange={tag => this.setState({ tag })}
+                handleChange={tag => {
+                  this.setState({ tag })
+                  quickBrowse && this.quickBrowse('Tag', tag)
+                }}
                 bodyTextColor={bodyTextColor}
               />
             </View>

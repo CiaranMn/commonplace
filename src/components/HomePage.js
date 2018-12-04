@@ -150,9 +150,11 @@ class HomePage extends React.Component {
 
   render() {
 
-    const { bodyTextColor, bodyBackgroundColor, primaryColor, secondaryColor } = this.props.theme
-
+    const { bodyTextColor, bodyBackgroundColor, primaryColor, secondaryColor }    = this.props.theme
+    const {query} = this.props
     let { showNavButtons, entryFontSize } = this.props.settings
+    
+
     entryFontSize = parseInt(entryFontSize)
 
     const renderPagination = (index, total, context) => {
@@ -165,6 +167,7 @@ class HomePage extends React.Component {
             visible={this.state.modalVisible}
             closeModal={this.toggleModal}
             bodyTextColor={bodyTextColor}
+            query={query}
           />
         </TouchableOpacity>
       </View>
