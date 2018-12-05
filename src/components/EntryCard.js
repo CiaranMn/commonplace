@@ -38,7 +38,7 @@ const EntryCard = ({
         <View style={styles.cardHeader}>
             <View style={{width: "80%"}}>
               <Text style={{color: bodyTextColor, fontWeight: 'bold', fontSize: 15}}>
-                {entry.author ? entry.author.name.substr(0,27) : 'Unknown'}
+                {entry.author ? entry.author.name : 'Unknown'}
               </Text>
               <Text note>
                 {entry.source ? entry.source.name : '(Unsourced)'}

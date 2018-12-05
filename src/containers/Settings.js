@@ -20,6 +20,7 @@ import HelpModal from '../components/HelpModal'
 
 import {themes, globalStyles} from '../config/globalStyles'
 import updateTheme from '../actions/updateTheme'
+import updateSettings from '../actions/updateSettings'
 import {importFile, exportFile} from '../lib/importExport'
 
 class Settings extends React.Component {
@@ -304,11 +305,5 @@ mapStateToProps = ({ settings, theme }) => ({
   settings,
   theme
 })
-
-const updateSettings = settings =>
-  ({
-    type: 'UPDATE_SETTINGS',
-    settings
-  })
 
 export default connect(mapStateToProps, {updateSettings, updateTheme})(Settings)

@@ -119,6 +119,7 @@ class AddOrEditEntry extends React.Component {
       return showToast("Entry needs content at least", "danger")
     }
     Entry.createOrUpdateWithAlerts({
+      id: entry ? entry.id : false,
       content,
       date,
       category: newCategory ? newCategoryText : category,

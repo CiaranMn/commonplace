@@ -121,7 +121,7 @@ export default class Entry extends Realm.Object {
           imported && object.dateModified ?
             object.dateModified
             : now
-      }, update || imported)
+      }, !!update || imported)
 
       if (object.tags) {
         let tags = imported ? object.tags.split(',') : object.tags
