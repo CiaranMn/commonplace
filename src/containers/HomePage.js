@@ -61,7 +61,7 @@ class HomePage extends React.Component {
     }
     let {homePageEntries} = this.props.settings
     if ((prevProps.settings.homePageEntries !==  homePageEntries) 
-         && !this.props.query.content) {
+         && !this.props.query) {
       this.props.updateResults(
         Entry.getEntries(homePageEntries)
       )
@@ -152,15 +152,11 @@ class HomePage extends React.Component {
 
   render() {
 
-    const { 
-      bodyTextColor,
-      primaryColor, 
-      secondaryColor 
-    } = this.props.theme
+    const { bodyTextColor, secondaryColor } = this.props.theme
     const {query} = this.props
+
     let { showNavButtons, entryFontSize } = this.props.settings
     
-
     entryFontSize = parseInt(entryFontSize)
 
     const renderPagination = (index, total, context) => {
