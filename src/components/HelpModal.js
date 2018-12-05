@@ -21,46 +21,45 @@ export default HelpModal = ({
 }) => 
 
   <Modal
-    animationType="fade"
+    animationType="slide"
     transparent={true}
     visible={visible}
     onRequestClose={closeModal}
   >
     <View style={{ 
-      marginTop: height * 0.6 - footerHeight,
-      marginLeft: width * 0.35,
-      height: height * 0.3,
-      width: width * 0.6,
+      marginTop: height * 0.4,
+      marginLeft: width * 0.25,
+      width: width * 0.5,
       backgroundColor: "white",
       borderColor: bodyTextColor,
       borderWidth: 1,
       borderRadius: 8,
-      padding: 10,
+      padding: 15,
     }}>
 
       {query 
       ?
         <>
-          <Text style={{marginBottom:3}}>
+          <Text style={{marginBottom: 5}}>
             You searched for entries containing: '{query.content}'
           </Text>
-          <Text style={{ marginBottom: 3 }}>
-            Dated from: {query.dateFrom ? query.dateFrom : ' any'}
+          <Text style={{ marginBottom: 5}}>
+            Dated from: {query.dateFrom ? query.dateFrom : 'any'}
           </Text>
-          <Text style={{ marginBottom: 3 }}>
-            Dated to: {query.dateFrom ? query.dateFrom : ' any'}
+          <Text style={{ marginBottom: 5}}>
+            Dated to: {query.dateFrom ? query.dateFrom : 'any'}
           </Text>
-          <Text style={{marginBottom:3}}>
-            Category: {query.author ? query.category.name : ' any'}
+          <Text style={{marginBottom: 5}}>
+            Category: {query.author ? query.category.name : 'any'}
           </Text>
-          <Text style={{marginBottom:3}}>
-            Author: {query.author ? query.author.name : ' any'}
+          <Text style={{marginBottom: 5}}>
+            Author: {query.author ? query.author.name : 'any'}
           </Text>
-          <Text style={{marginBottom:3}}>
-            Source: {query.source ? query.source.name : ' any'}
+          <Text style={{marginBottom: 5}}>
+            Source: {query.source ? query.source.name : 'any'}
           </Text>
-          <Text style={{marginBottom:3}}>
-            Tag: {query.tag ? query.tag.name : ' any'}
+          <Text style={{marginBottom: 5}}>
+            Tag: {query.tag ? query.tag.name : 'any'}
           </Text>
         </>
       :

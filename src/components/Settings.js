@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {
   AsyncStorage,
+  Platform,
   ScrollView,
   StyleSheet,
   Switch,
@@ -15,6 +16,7 @@ import SearchIconAndStatusColor from './SearchIconAndStatusColor'
 import ThemeButton from './ThemeButton'
 import Button from './Button'
 import FieldPicker from './FieldPicker'
+import HelpModal from './HelpModal'
 
 import {themes, globalStyles} from '../config/globalStyles'
 import updateTheme from '../actions/updateTheme'
@@ -40,7 +42,12 @@ class Settings extends React.Component {
       showNavButtons: props.settings.showNavButtons || false,
       quickBrowse: props.settings.quickBrowse || true,
       entryFontSize: props.settings.entryFontSize || 17,
-      homePageEntries: props.settings.homePageEntries || 'Oldest first'
+      homePageEntries: props.settings.homePageEntries || 'Oldest first',
+      navButtonHelp: false,
+      quickBrowseHelp: false,
+      entryFontSizeHelp: false,
+      homePageEntriesHelp: false,
+      importExportHelp: false
     }
   }
 
@@ -104,16 +111,24 @@ class Settings extends React.Component {
       homePageEntries
     } = this.props.settings
 
-    const helpIcon = callback => (
-        <TouchableOpacity>
-          <Icon
-          name="md-help-circle"
-          color={bodyTextColor}
-          size={22}
-          style={{ marginLeft: 10 }}
-          />
-        </TouchableOpacity>
-    )
+    const helpIcon = (caller, text ) => 
+        <>
+          <TouchableOpacity onPress={() => this.setState({[caller]: true})}>
+            <Icon
+            name="md-help-circle"
+            color={bodyTextColor}
+            size={22}
+            style={{ marginLeft: 10 }}
+            />
+          </TouchableOpacity>
+          <HelpModal 
+            visible={this.state[caller]}
+            closeModal={() => this.setState({[caller]: false})}
+            bodyTextColor={bodyTextColor}
+            helpText={text}
+            />
+        </>
+
 
     return (
       <View style={{ flex: 1, backgroundColor: bodyBackgroundColor}}>
@@ -149,7 +164,7 @@ class Settings extends React.Component {
             <Text style={{ color: bodyTextColor, fontSize: 15 }}>
               Next and previous buttons
             </Text>
-            {helpIcon()}
+            {helpIcon('navButtonHelp', 'Display next and previous buttons on each entry to allow browsing by pressing buttons as well as swiping')}
           </View>
           <View style={styles.settingGroup}>
             <View style={{ width: '55%', marginRight: 15 }}>
@@ -165,7 +180,7 @@ class Settings extends React.Component {
             <Text style={{ color: bodyTextColor, fontSize: 15 }}>
               Font size
             </Text>
-            {helpIcon()}
+            {helpIcon('entryFontSizeHelp', 'Change the font size the main entry content is displayed in')}
           </View>
 
           <View style={styles.settingGroup}>
@@ -188,7 +203,7 @@ class Settings extends React.Component {
             <Text style={{ color: bodyTextColor, fontSize: 15 }}>
               Default 
             </Text>
-            {helpIcon()}
+            {helpIcon('homePageEntriesHelp', 'Change the order in which entries are displayed when you first load the app')}
           </View>
 
           <Text style={[
@@ -210,25 +225,27 @@ class Settings extends React.Component {
             <Text style={{ color: bodyTextColor, fontSize: 15 }}>
               Quick browse entries
             </Text>
-            {helpIcon()}
+            {helpIcon('quickBrowseHelp', 'Instantly display entries with a particular category, source, author, or tag. When this is off, you can add multiple filters, but will need to click search to display matching entries.')}
 
           </View>
 
-          <View style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginTop: 25,
-              marginBottom: 15
-           }}>
-            <Text style={[
-              globalStyles.label,
-              { color: bodyTextColor},
-            ]}>
-              Import / Export data
-            </Text>
-            {helpIcon()}
-          </View>
-          <View style={[
+         {Platform.OS === 'android' &&
+          <>
+            <View style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 25,
+                marginBottom: 15
+            }}>
+              <Text style={[
+                globalStyles.label,
+                { color: bodyTextColor},
+              ]}>
+                Import / Export data
+              </Text>
+              {helpIcon('importExportHelp', 'Import or export')}
+            </View>
+            <View style={[
               globalStyles.formItem,
               {
                 justifyContent: 'space-around',
@@ -249,7 +266,9 @@ class Settings extends React.Component {
                 onPress={() => exportFile()}
               />
             </View>
-          
+          </>
+          }
+
           </View>
         </View>
       </ScrollView>
