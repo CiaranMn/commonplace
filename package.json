@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "app-icon": "^0.6.3",
     "cuid": "^2.1.4",
     "moment": "^2.22.2",
     "native-base": "^2.8.1",
