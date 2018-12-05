@@ -19,65 +19,31 @@ The act of reflecting on which ideas are important to you and what they are abou
 
 Many digital solutions for capturing notes exist (e.g. Evernote, Day One, OneNote), but they lack detailed cataloguing and searching power, tending to be limited to tags and broad text searches.
 
-The Commonplace Book app will be tailored specifically to easily capturing and comprehensively searching entries, with a user interface and presentation designed to exactly match its purpose of storing and recalling ideas and who and where they came from.
-
-- greater cataloguing and searching power, including by category, tags, author, source, date
-- focused user interface for search and displaying entries
-- frictionless capturing of notes, including photo-to-text and voice-to-text features
+The Commonplace Book app is tailored specifically to easily capturing and comprehensively searching entries, with a user interface and presentation designed to exactly match its purpose of storing and recalling ideas and who and where they came from.
 
 ##
 ## How?
-#### An offline-first mobile application built in React Native, first for Android, then for iOS ####
+#### An offline-first mobile application built in React Native ####
 
-Comes with example categories and tags, but fully customisable to allow users to structure and search entries in a way which makes most sense to them.
-
-##
-## Data Models
-### Entry
-- **Content**  (*required*)
-- **Author** (*required*)
-- **Category** (Quote, Idea, Maxim, Definition)  (*required*, default *quote*)
-- **Fictional?** (true/false) (*required*, default *false*)
-  - Character (*input available if 'fictional' is true*)
-- **Tags** (e.g. politics, philosophy, motivation, leadership, rationality, religion, film, journalism)
-- **Source** (e.g. The Bible)
-- **Reference** (e.g. page 56)
-- **Date**
-- **Date** created (automatic, user cannot edit)
-- **id** (automatic, user cannot edit)
-
-*Additional models with name and id only for Author, Category, Character, Tag, Tag-Entry (join), and Source will be used if a relational database solution is used for local persistence.*
+- Built in React Native with configuration for iOS and Android deployment, throughout development.
+- Local Realm (NoSQL) database for storing entries. 
+- Async Storage for storing user settings between sessions.
+- Redux store for in-memory state management.
+- Tested and tweaked to accommodate a range of screen sizes.
+- Navigation by stack, tab, drawer, swipe.
 
 ##
-## MVP
-- Add entry
-- View single entry
-- Edit entry
-- Delete entry
-- Display multiple entries
-- Basic text search
-- Advanced search
-- Home page with random quote
-- Local persistence (e.g. SQLite)
+## Features
+#### Fully customisable to allow users to structure and search entries as best suits them. UX enhancements to make entry capture and retrieval intuitive and frictionless.
+- Entry capture through Voice-to-Text, Image-to-Text, Photo-to-Text.
+- Users can capture entries with date, category, author, source, reference, tags.
+- Quick and easy editing of entries.
+- Simple content search and quick browse by category/author/tags - or advanced search with multiple filters.
+- View and browse entries by swipe or buttons. Share entries with friends.
+- Customisations include colour theme, search behaviour, main entry font size, default entries displayed on home page.
+- Import and export data to CSV (currently Android with iOS coming soon).
 
-##
-## MVP Components
-- **Top Menu:** (logo and buttons for add entry, home, *settings in later version*) - always on top of app
-- **Simple Search Bar:** (text input, search button, and toggle to switch to advanced search view) - usually on bottom of app
-- **Advanced Search Form:** form with inputs and selections for advanced search
-- **Entry of the Day:** presentational card displaying quote content, tags, and author
-- **Home Page:** entry of the day card with 'browse' dropdowns to select category, author, tag
-- **Search Results:** Container to show cards for search results. Scrolls horizontally
-- **Search Result Card:** small presentational card showing first x characters of entry content, and small badge with author. 
-- **View entry:** Page showing full details of entry
-- **Add entry:** form to add entry
-- **Edit entry:** form to edit entry (based on form entry page, possibly same component)
 
-##
-## Timeline
-**Wednesday 21 Nov** - proposal presentation, finish wireframing, React Native basic set up and learning (for Android)
 
-**By close Fri 23 Nov** - Home page, view single entry, view multiple, basic search, local storage solution implemented
 
-**By close Tue 27 Nov** - Add entry, edit entry, delete entry, advanced search
 
