@@ -11,6 +11,7 @@ import getSettings from './src/lib/getSettings'
 
 getSettings()
 
+// N.B. seeds file wipes database before seeeding!
 require('./src/db/seeds')
 
 const authors = Author.getAuthors()

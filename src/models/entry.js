@@ -82,14 +82,14 @@ export default class Entry extends Realm.Object {
     })
   }
 
-  static createOrUpdate(object, update = false) {
+  static createOrUpdate(object, update = false, imported = false) {
     const now = new Date()
     let entry
     realm.write(() => {
       entry = realm.create('Entry', {
         id:
-          update ?
-            update
+          (update || imported) && object.id ?
+            object.id
             : cuid(),
         content:
           object.content,
@@ -105,18 +105,23 @@ export default class Entry extends Realm.Object {
           object.reference || null,
         date:
           object.date ?
-            this.stringToDate(object.date)
+            imported ?
+              object.date : this.stringToDate(object.date)
             : now,
         dateCreated:
           object.dateCreated ?
-            object.dateCreated
+            imported ?
+              object.dateCreated : this.stringToDate (object.dateCreated)
             : now,
         dateModified:
-          now
-      }, !!update)
+          imported && object.dateModified ?
+            object.dateModified
+            : now
+      }, update || imported)
 
       if (object.tags) {
-        entry.tags = object.tags.map(tag => {
+        let tags = imported ? object.tags.split(',') : object.tags
+        entry.tags = tags.map(tag => {
           let name = tag[0].toUpperCase() + tag.slice(1)
           return realm.create('Tag', { name }, true)
         })
