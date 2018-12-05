@@ -32,7 +32,8 @@ The Commonplace Book app is tailored specifically to easily capturing and compre
 - Tested and tweaked to accommodate a range of screen sizes.
 - Navigation by stack, tab, drawer, swipe.
 
-### Features
+##
+## Features
 #### Fully customisable to allow users to structure and search entries as best suits them. UX enhancements to make entry capture and retrieval intuitive and frictionless.
 - Entry capture through Voice-to-Text, Image-to-Text, Photo-to-Text.
 - Users can capture entries with date, category, author, source, reference, tags.
