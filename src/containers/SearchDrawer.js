@@ -45,11 +45,12 @@ class SearchDrawer extends React.Component {
   quickBrowse = (type, value) => {
     // check for focus to avoid quick browse being triggered by new 
     // authors/tags/sources being added with update to entries
-    if (!this.state.focus) { return }
+    if (this.props.navigation.state.isDrawerOpen) {
     let results = realm.objectForPrimaryKey(type, value).entries
     this.props.updateResults(results, { [type]: value } )
     this.props.navigation.navigate('Home')
     this.clearAndClose()
+    }
   }
 
   search = () => {
@@ -101,7 +102,7 @@ class SearchDrawer extends React.Component {
       <SafeAreaView style={styles.container}>
 
         <NavigationEvents
-          onDidFocus={() => {alert('did focus'); this.setState({ focus: true }) }}
+          onWillFocus={() => {alert('did focus'); this.setState({ focus: true }) }}
           onDidBlur={() => this.setState({ focus: false })}
         />
         <View style={[

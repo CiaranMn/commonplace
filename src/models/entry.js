@@ -3,6 +3,10 @@ import {realm} from './realm'
 import cuid from 'cuid'
 import { store } from '../../App'
 import showToast from '../lib/showToast'
+import Author from './author'
+import Category from './category'
+import Source from './source'
+import Tag from './tag'
 
 export default class Entry extends Realm.Object {
 
@@ -171,14 +175,10 @@ export default class Entry extends Realm.Object {
   }
 
   static updateLists() {
-    const categories =
-      realm.objects('Category').sorted('name').map(category => category.name)
-    const authors =
-      realm.objects('Author').sorted('name').map(author => author.name)
-    const sources =
-      realm.objects('Source').sorted('name').map(source => source.name)
-    const tags =
-      realm.objects('Tag').sorted('name').map(tag => tag.name)
+    const categories = Category.getCategories()
+    const authors = Author.getAuthors()
+    const sources = Source.getSources()
+    const tags = Tag.getTags()
     store.dispatch({
       type: 'UPDATE_ALL_LISTS',
       categories,
