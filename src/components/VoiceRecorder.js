@@ -31,7 +31,7 @@ export default class VoiceTest extends Component {
       await Voice.start('en-UK')
       this.setState({recording: true})
     } catch (e) {
-      alert('error starting' + e)
+      showToast('Error starting voice recognizer', 'danger')
     }
   }
 
@@ -39,7 +39,6 @@ export default class VoiceTest extends Component {
     try {
       await Voice.stop()
     } catch (e) {
-      alert('error in stopping: ' + e)
     }
   }
 
@@ -47,7 +46,6 @@ export default class VoiceTest extends Component {
     try {
       await Voice.destroy()
     } catch (e) {
-      alert('error in destroying: ' + e)
     }
   }
 

@@ -101,10 +101,6 @@ class SearchDrawer extends React.Component {
 
       <SafeAreaView style={styles.container}>
 
-        <NavigationEvents
-          onWillFocus={() => {alert('did focus'); this.setState({ focus: true }) }}
-          onDidBlur={() => this.setState({ focus: false })}
-        />
         <View style={[
           styles.formContainer,
           {

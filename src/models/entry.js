@@ -28,7 +28,7 @@ export default class Entry extends Realm.Object {
 
   static getEntries(sort = 'Oldest first') {
     let results
-    switch (sort) {
+    switch (sort.toString()) {
       case 'Oldest first':
         results = realm.objects('Entry').sorted('date', true)
         break

@@ -22,6 +22,7 @@ import {themes, globalStyles} from '../config/globalStyles'
 import updateTheme from '../actions/updateTheme'
 import updateSettings from '../actions/updateSettings'
 import {importFile, exportFile} from '../lib/importExport'
+import showToast from '../lib/showToast';
 
 class Settings extends React.Component {
 
@@ -43,7 +44,7 @@ class Settings extends React.Component {
       showNavButtons: props.settings.showNavButtons || false,
       quickBrowse: props.settings.quickBrowse || true,
       entryFontSize: props.settings.entryFontSize || 17,
-      homePageEntries: props.settings.homePageEntries || 'Oldest first',
+      homePageEntries: props.settings.homePageEntries,
       navButtonHelp: false,
       quickBrowseHelp: false,
       entryFontSizeHelp: false,
@@ -87,13 +88,25 @@ class Settings extends React.Component {
   updateAndSaveTheme = theme => {
     this.props.updateTheme(theme)
     AsyncStorage.setItem('theme', JSON.stringify(theme))
-      .catch(err => alert(err.message))
+      .catch(err => showToast('Error saving theme to phone', 'danger'))
   }
 
   updateAndSaveSettings = () => {
-    this.props.updateSettings(this.state)
-    AsyncStorage.setItem('settings', JSON.stringify(this.state))
-      .catch(err => alert(err.message))
+    const {
+      showNavButtons,
+      quickBrowse,
+      entryFontSize,
+      homePageEntries
+    } = this.state
+    const settings = {
+      showNavButtons,
+      quickBrowse,
+      entryFontSize,
+      homePageEntries
+    }
+    this.props.updateSettings(settings)
+    AsyncStorage.setItem('settings', JSON.stringify(settings))
+      .catch(err => showToast('Error saving settings to phone', 'danger'))
   }
 
   render() {
@@ -202,7 +215,7 @@ class Settings extends React.Component {
               />
             </View>
             <Text style={{ color: bodyTextColor, fontSize: 15 }}>
-              Default 
+              Home view
             </Text>
             {helpIcon('homePageEntriesHelp', 'Change the order in which entries are displayed when you first load the app')}
           </View>
@@ -244,7 +257,7 @@ class Settings extends React.Component {
               ]}>
                 Import / Export data
               </Text>
-              {helpIcon('importExportHelp', 'Import or export')}
+              {helpIcon('importExportHelp', 'You can export your records as a CSV (openable in Excel or Numbers), or import data back in from a CSV. Look in your main storage for a commonplace folder or commonplace.csv file.')}
             </View>
             <View style={[
               globalStyles.formItem,

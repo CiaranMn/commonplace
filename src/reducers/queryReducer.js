@@ -1,4 +1,4 @@
-export default queryReducer = (state = {}, action) => {
+export default queryReducer = (state = false, action) => {
 
   switch (action.type) {
     case 'UPDATE_RESULTS':

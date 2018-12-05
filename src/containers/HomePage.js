@@ -12,7 +12,7 @@ import {
 import { Icon } from 'native-base'
 import Swiper from 'react-native-swiper'
 
-import { realm, Entry } from '../models/realm'
+import { Entry } from '../models/realm'
 import updateResults from '../actions/updateResults'
 
 import SearchIconAndStatusColor from '../components/SearchIconAndStatusColor'
@@ -57,20 +57,14 @@ class HomePage extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.theme !== this.props.theme) {
       this.updateHeaderTheme()
-      this.forceRefresh()
     }
     let {homePageEntries} = this.props.settings
     if ((prevProps.settings.homePageEntries !==  homePageEntries) 
          && !this.props.query) {
       this.props.updateResults(
-        Entry.getEntries(homePageEntries)
+        Entry.getEntries(this.props.settings.homePageEntries)
       )
-      this.forceRefresh()
     }
-  }
-
-  forceRefresh = () => {
-    this.setState({index: 0})
   }
 
   confirmDelete = entry => {
@@ -121,27 +115,6 @@ class HomePage extends React.Component {
       subject: "Check out this quote",
       dialogTitle: "Share entry"
     })
-  }
-
-  browseEntries = ({author, category}) => {
-    let results
-    if (author) {
-      this.setState({
-        author,
-        category: null
-      })
-      results = realm.objectForPrimaryKey('Author', author).entries
-    } else if (category) {
-      this.setState({
-        category,
-        author: null
-      })
-      results = realm.objectForPrimaryKey('Category', category).entries
-    } else { 
-      return
-    }
-    results = Array.prototype.slice.call(results)
-    this.props.updateResults(results)
   }
 
   toggleModal = () => {
