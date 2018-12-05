@@ -15,9 +15,9 @@ import Swiper from 'react-native-swiper'
 import { realm, Entry } from '../models/realm'
 import updateResults from '../actions/updateResults'
 
-import SearchIconAndStatusColor from './SearchIconAndStatusColor'
-import EntryCard from './EntryCard'
-import HelpModal from './HelpModal'
+import SearchIconAndStatusColor from '../components/SearchIconAndStatusColor'
+import EntryCard from '../components/EntryCard'
+import HelpModal from '../components/HelpModal'
 import { borderColor } from '../config/globalStyles'
 
 class HomePage extends React.Component {

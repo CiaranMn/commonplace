@@ -4,7 +4,7 @@ import { Dimensions } from 'react-native'
 import {createDrawerNavigator} from 'react-navigation'
 
 import {TabNavigator} from "./TabNavigator"
-import SearchDrawer from '../components/SearchDrawer'
+import SearchDrawer from '../containers/SearchDrawer'
 
 export default DrawerNavigator = createDrawerNavigator(
   {

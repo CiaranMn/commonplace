@@ -12,11 +12,11 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import SearchIconAndStatusColor from './SearchIconAndStatusColor'
-import ThemeButton from './ThemeButton'
-import Button from './Button'
-import FieldPicker from './FieldPicker'
-import HelpModal from './HelpModal'
+import SearchIconAndStatusColor from '../components/SearchIconAndStatusColor'
+import ThemeButton from '../components/ThemeButton'
+import Button from '../components/Button'
+import FieldPicker from '../components/FieldPicker'
+import HelpModal from '../components/HelpModal'
 
 import {themes, globalStyles} from '../config/globalStyles'
 import updateTheme from '../actions/updateTheme'

@@ -53,16 +53,16 @@ export const themes = {
     deleteColor: "#EC684F",
     buttonPrimary: '#DA8F17'
   },
-  dark: {
-    primaryColor: 'rgb(33,37,42)',
-    secondaryColor: 'rgb(171,125,208)',
-    bodyBackgroundColor: 'rgb(40,45,50)',
-    statusBarColor: '#4F4D4D',
-    bodyTextColor: "rgb(94,177,230)",	
-    statusBarText: "light-content",
-    deleteColor: "rgb(189,75,72)",
-    buttonPrimary: 'rgb(171,125,208)'
-  }
+  // dark: {
+  //   primaryColor: 'rgb(33,37,42)',
+  //   secondaryColor: 'rgb(171,125,208)',
+  //   bodyBackgroundColor: 'rgb(40,45,50)',
+  //   statusBarColor: '#4F4D4D',
+  //   bodyTextColor: "rgb(94,177,230)",	
+  //   statusBarText: "light-content",
+  //   deleteColor: "rgb(189,75,72)",
+  //   buttonPrimary: 'rgb(171,125,208)'
+  // }
 }
 
 export const globalStyles = StyleSheet.create({

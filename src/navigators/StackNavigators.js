@@ -2,9 +2,9 @@ import React from 'react'
 import { createStackNavigator } from 'react-navigation'
 import { Dimensions } from 'react-native'
 
-import HomePage from '../components/HomePage'
-import Settings from '../components/Settings'
-import AddOrEditEntry from '../components/AddOrEditEntry'
+import HomePage from '../containers/HomePage'
+import Settings from '../containers/Settings'
+import AddOrEditEntry from '../containers/AddOrEditEntry'
 
 export const headerHeight = Math.min(Dimensions.get('window').height * 0.7, 50)
 

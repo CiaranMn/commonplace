@@ -21,9 +21,9 @@ import updateResults from '../actions/updateResults'
 
 import { globalStyles, borderColor } from '../config/globalStyles';
 
-import DatePickerInput from './DatePicker'
-import FieldPicker from './FieldPicker'
-import Button from './Button'
+import DatePickerInput from '../components/DatePicker'
+import FieldPicker from '../components/FieldPicker'
+import Button from '../components/Button'
 
 class SearchDrawer extends React.Component {
 
@@ -101,7 +101,7 @@ class SearchDrawer extends React.Component {
       <SafeAreaView style={styles.container}>
 
         <NavigationEvents
-          onDidFocus={() => this.setState({ focus: true })}
+          onDidFocus={() => {alert('did focus'); this.setState({ focus: true }) }}
           onDidBlur={() => this.setState({ focus: false })}
         />
         <View style={[

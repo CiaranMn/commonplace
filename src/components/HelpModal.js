@@ -8,8 +8,6 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import {footerHeight} from '../navigators/TabNavigator'
-
 const {width, height} = Dimensions.get('screen')
 
 export default HelpModal = ({ 
@@ -50,7 +48,7 @@ export default HelpModal = ({
             Dated to: {query.dateFrom ? query.dateFrom : 'any'}
           </Text>
           <Text style={{marginBottom: 5}}>
-            Category: {query.author ? query.category.name : 'any'}
+            Category: {query.category ? query.category.name : 'any'}
           </Text>
           <Text style={{marginBottom: 5}}>
             Author: {query.author ? query.author.name : 'any'}
