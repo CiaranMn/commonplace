@@ -5,7 +5,7 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 import org.devio.rn.splashscreen.SplashScreen;
-import com.cboy.rn.splashscreen.SplashScreen;
+// import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
 
@@ -18,11 +18,11 @@ public class MainActivity extends ReactActivity {
         return "commonplace";
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-      SplashScreen.show(this);
-      super.onCreate(savedInstanceState);
-    }
+    // @Override
+    // protected void onCreate(Bundle savedInstanceState) {
+    //   SplashScreen.show(this);
+    //   super.onCreate(savedInstanceState);
+    // }
 
     @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
