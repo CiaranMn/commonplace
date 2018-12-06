@@ -24,18 +24,6 @@ const entries = [
     "tags": ["strive", "success", "value"]
   },
   {
-    "content": "Two roads diverged in a wood, and I—I took the one less traveled by, And that has made all the difference.", 
-    "category": "Quote",
-     "author": "Robert Frost",
-    "tags": ["roads"]
-  },
-  {
-    "content": "I attribute my success to this: I never gave or took any excuse.", 
-    "category": "Quote", 
-    "author": "Florence Nightingale",
-    "tags": ["success", "excuse"]
-  },
-  {
     "content": "You miss 100% of the shots you don’t take.",
     "category": "Advice", 
     "author": "Wayne Gretzky",
@@ -54,21 +42,10 @@ const entries = [
     "tags": ["action", "decision", "motivation"]
   },
   {
-    "content": "Every strike brings me closer to the next home run.", "category": "Quote",
-    "author": "Babe Ruth",
-    "tags": ["strike", "progress"]
-  },
-  {
     "content": "Definiteness of purpose is the starting point of all achievement.",
     "category": "Maxim",
     "author": "W. Clement Stone",
     "tags": ["purpose", "achievement"]
-  },
-  {
-    "content": "We must balance conspicuous consumption with conscious capitalism.",
-    "category": "Quote", 
-    "author": "Kevin Kruse",
-    "tags": ["capitalism", "conscious"]
   },
   {
     "content": "Life is what happens to you while you’re busy making other plans.", 
@@ -77,21 +54,10 @@ const entries = [
     "tags": ["life", "plans"]
   },
   {
-    "content": "We become what we think about.",
-    "category": "Advice", 
-    "author": "Earl Nightingale",
-    "tags": ["personality", "growth"]
-  },
-  {
     "content": "Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.", 
     "category": "Advice", 
     "author": "Mark Twain",
     "tags": ["explore", "dream", "discover"]
-  },
-  {
-    "content": "Life is 10% what happens to me and 90% of how I react to it.", "category": "Quote",
-    "author": "Charles Swindoll",
-    "tags": ["life", "reaction"]
   },
   {
     "content": "The most common way people give up their power is by thinking they don’t have any.", 
@@ -150,13 +116,7 @@ const entries = [
     "content": "I’ve learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.", "category": "Advice", "author": "Maya Angelou"
   },
   {
-    "content": "Either you run the day, or the day runs you.", "category": "Advice", "author": "Jim Rohn"
-  },
-  {
     "content": "Whether you think you can or you think you can’t, you’re right.", "category": "Advice", "author": "Henry Ford"
-  },
-  {
-    "content": "The two most important days in your life are the day you are born and the day you find out why.", "category": "Quote", "author": "Mark Twain"
   },
   {
     "content": "Whatever you can do, or dream you can, begin it.  Boldness has genius, power and magic in it.", "category": "Quote", "author": "Johann Wolfgang von Goethe"
@@ -172,9 +132,6 @@ const entries = [
   },
   {
     "content": "If you hear a voice within you say “you cannot paint,” then by all means paint and that voice will be silenced.", "category": "Quote", "author": "Vincent Van Gogh"
-  },
-  {
-    "content": "There is only one way to avoid criticism: do nothing, say nothing, and be nothing.", "category": "Quote", "author": "Aristotle"
   },
   {
     "content": "Ask and it will be given to you; search, and you will find; knock and the door will be opened for you.", "category": "Maxim", "author": "Jesus"
@@ -205,12 +162,6 @@ const entries = [
   },
   {
     "content": "Teach thy tongue to say, “I do not know,” and thous shalt progress.", "category": "Advice", "author": "Maimonides"
-  },
-  {
-    "content": "Start where you are. Use what you have.  Do what you can.", "category": "Advice", "author": "Arthur Ashe"
-  },
-  {
-    "content": "When I was 5 years old, my mother always told me that happiness was the key to life.  When I went to school, they asked me what I wanted to be when I grew up.  I wrote down ‘happy’.  They told me I didn’t understand the assignment, and I told them they didn’t understand life.", "category": "Quote", "author": "John Lennon"
   },
   {
     "content": "Fall seven times and stand up eight.", "category": "Advice", "author": "Japanese Proverb"
@@ -246,9 +197,6 @@ const entries = [
     "content": "You can’t fall if you don’t climb.  But there’s no joy in living your whole life on the ground.", "category": "Advice", "author": "Unknown"
   },
   {
-    "content": "We must believe that we are gifted for something, and that this thing, at whatever cost, must be attained.", "category": "Quote", "author": "Marie Curie"
-  },
-  {
     "content": "Too many of us are not living our dreams because we are living our fears.", "category": "Quote", "author": "Les Brown"
   },
   {
@@ -264,13 +212,7 @@ const entries = [
     "content": "Limitations live only in our minds.  But if we use our imaginations, our possibilities become limitless.", "category": "Advice", "author": "Jamie Paolinetti"
   },
   {
-    "content": "You take your life in your own hands, and what happens? A terrible thing, no one to blame.", "category": "Quote", "author": "Erica Jong"
-  },
-  {
     "content": "What’s money? A man is a success if he gets up in the morning and goes to bed at night and in between does what he wants to do.", "category": "Quote", "author": "Bob Dylan"
-  },
-  {
-    "content": "I didn’t fail the test. I just found 100 ways to do it wrong.", "category": "Quote", "author": "Benjamin Franklin"
   },
   {
     "content": "A person who never made a mistake never tried anything new.", "category": "Quote", "author": "Albert Einstein"
@@ -285,19 +227,7 @@ const entries = [
     "content": "It is never too late to be what you might have been.", "category": "Advice", "author": "George Eliot"
   },
   {
-    "content": "You become what you believe.", "category": "Advice", "author": "Oprah Winfrey"
-  },
-  {
     "content": "I would rather die of passion than of boredom.", "category": "Quote", "author": "Vincent van Gogh"
-  },
-  {
-    "content": "A truly rich man is one whose children run into his arms when his hands are empty.", "category": "Quote", "author": "Unknown"
-  },
-  {
-    "content": "It is not what you do for your children, but what you have taught them to do for themselves, that will make them successful human beings.", "category": "Advice", "author": "Ann Landers"
-  },
-  {
-    "content": "If you want your children to turn out well, spend twice as much time with them, and half as much money.", "category": "Advice", "author": "Abigail Van Buren"
   },
   {
     "content": "Build your own dreams, or someone else will hire you to build theirs.", "category": "Advice", "author": "Farrah Gray"
@@ -348,9 +278,6 @@ const entries = [
     "content": "Remember no one can make you feel inferior without your consent.", "category": "Advice", "author": "Eleanor Roosevelt"
   },
   {
-    "content": "Life is what we make it, always has been, always will be.", "category": "Advice", "author": "Grandma Moses"
-  },
-  {
     "content": "When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.", "category": "Advice", "author": "Henry Ford"
   },
   {
@@ -361,9 +288,6 @@ const entries = [
   },
   {
     "content": "Either write something worth reading or do something worth writing.", "category": "Advice", "author": "Benjamin Franklin"
-  },
-  {
-    "content": "Nothing is impossible, the word itself says, “I’m possible!", "category": "Quote", "author": "Audrey Hepburn"
   },
   {
     "content": "The only way to do great work is to love what you do.", "quote": "Advice", "author": "Steve Jobs"
@@ -415,6 +339,198 @@ const entries = [
     "source": "Utilitarianism",
     "reference": "Chapter 2",
     "tags": ["ethics", "morality", "utilitarianism", "Jesus", "utility", "love", "neighbour"]
+  },
+  {
+    "content": "All power tends to corrupt, and absolute power corrupts absolutely.",
+    "category": "Politics",
+    "author": "Lord Acton",
+    "source": "Essays on Freedom and Powe",
+    "reference": "Letter to Mandell Creighton, April 1887",
+    "tags": ["power"]
+  },
+  {
+    "content": "Man is by nature a political animal.",
+    "category": "Politics",
+    "author": "Aristotle",
+    "source": "Politics",
+    "reference": "Chapter 2",
+    "tags": ["political", "man"]
+  },
+  {
+    "content": "In politics, you have your word and your friends- go back on either and you're dead.",
+    "category": "Politics",
+    "author": "Morton C. Blackwell",
+    "source": "Laws of Politics",
+    "reference": "",
+    "tags": ["friends", "oath", "word"]
+  },
+  {
+    "content": "Finality is not the language of politics.",
+    "category": "Politics",
+    "author": "Benjamin Disraeli",
+    "source": "Speech",
+    "reference": "House of Commons, 28 February 1859",
+    "tags": ["finality"]
+  },
+  {
+    "content": "Man's capacity for justice makes democracy possible, but man's inclination to injustice makes democracy necessary.",
+    "category": "Politics",
+    "author": "Reinhold Niebuhr",
+    "source": "The Children of Light and the Children of Darkness",
+    "reference": " ",
+    "tags": ["democracy", "justice", "injustice"]
+  },
+  {
+    "content": "Ankh-Morpork had dallied with many forms of government and had ended up with that form of democracy known as One Man, One Vote. The Patrician was the Man; he had the Vote.",
+    "category": "Politics",
+    "author": "Terry Pratchett",
+    "source": "Mort",
+    "reference": " ",
+    "tags": ["democracy", "Patrician", "despot"]
+  },
+  {
+    "content": "Politics is the art of postponing decisions until they are no longer relevant.",
+    "category": "Politics",
+    "author": "Henri Queuille",
+    "source": "The Bureaucrat",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "Campaign promises are—by long democratic tradition—the least binding form of human commitment.",
+    "category": "Politics",
+    "author": "Antonin Scalia",
+    "source": "Court Judgment",
+    "reference": "Republican Party v. White, 536 U.S. 765 ",
+    "tags": ["campaign", "campaign promises"]
+  },
+  {
+    "content": "Happy families are all alike; every unhappy family is unhappy in its own way.",
+    "category": "Opening Lines",
+    "author": "Leo Tolstoy",
+    "source": "Anna Karenina",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "It was about eleven o'clock in the morning, mid October, with the sun not shining and a look of hard wet rain in the clearness of the foothills.",
+    "category": "Opening Lines",
+    "author": "Raymond Chandler",
+    "source": "The Big Sleep",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "The building was on fire, and it wasn't my fault.",
+    "category": "Opening Lines",
+    "author": "Jim Butcher",
+    "source": "Blood Rites",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "This is a tale of a meeting of two lonesome, skinny, fairly old white men on a planet which was dying fast.",
+    "category": "Opening Lines",
+    "author": "Kurt Vonnegut",
+    "source": "Breakfast of Champions",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "Dr. Iannis had enjoyed a satisfactory day in which none of his patients had died or got any worse.",
+    "category": "Opening Lines",
+    "author": "Louis de Bernieres",
+    "source": "Captain Corelli's Mandolin",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "It was love at first sight. The first time Yossarian saw the chaplain he fell madly in love with him.",
+    "category": "Opening Lines",
+    "author": "Joseph Heller",
+    "source": "Catch-22",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "If you really want to hear about it, the first thing you'll probably want to know is where I was born, and what my lousy childhood was like, and how my parents were occupied and all before they had me, and all that David Copperfield kind of crap, but I don't feel like going into it, if you want to know the truth.",
+    "category": "Opening Lines",
+    "author": "J.D. Sallinger",
+    "source": "The Catcher in the Rye",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "Marley was dead, to begin with. There is no doubt whatever about that.",
+    "category": "Opening Lines",
+    "author": "Charles Dickens",
+    "source": "A Christmas Carol",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "When a day that you happen to know is Wednesday starts off by sounding like Sunday, there is something seriously wrong somewhere.",
+    "category": "Opening Lines",
+    "author": "John Wyndham",
+    "source": "The Day of the Triffids",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "Anything that was in the world when you were born is normal and natural. Anything invented between when you were 15 and 35 is new and revolutionary and exciting, and you’ll probably get a career in it. Anything invented after you’re 35 is against the natural order of things.",
+    "category": "Technology",
+    "author": "Douglas Adams",
+    "source": "The Salmon of Doubt: Hitchhiking the Galaxy One Last Time",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "Science and technology multiply around us. To an increasing extent they dictate the languages in which we speak and think. Either we use those languages, or we remain mute.",
+    "category": "Technology",
+    "author": "J. G. Ballard",
+    "source": "Crash",
+    "reference": "Introduction to the 1984 French edition",
+    "tags": []
+  },
+  {
+    "content": "Engineering or Technology is the making of things that did not previously exist, whereas science is the discovering of things that have long existed.",
+    "category": "Technology",
+    "author": "David Billington",
+    "source": "The Tower and the Bridge: The New Art of Structural Engineering",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "The most important and urgent problems of the technology of today are no longer the satisfactions of the primary needs or of archetypal wishes, but the reparation of the evils and damages by the technology of yesterday.",
+    "category": "Technology",
+    "author": "Dennis Gabor",
+    "source": "Innovations: Scientific, Technological and Social",
+    "reference": " ",
+    "tags": []
+  },
+  {
+    "content": "We live in a society exquisitely dependent on science and technology, in which hardly anyone knows anything about science and technology. ",
+    "category": "Technology",
+    "author": "Carl Sagan",
+    "source": "Why We Need To Understand Science",
+    "reference": "The Skeptical Inquirer Vol. 14, Issue 3, (Spring 1990)",
+    "tags": []
+  },
+  {
+    "content": "We are too prone to make technological instruments the scapegoats for the sins of those who wield them. The products of modern science are not in themselves good or bad; it is the way they are used that determines their value.",
+    "category": "Technology",
+    "author": "David Sarnoff",
+    "source": "Speech",
+    "reference": "Recorded in Understanding Media: the Extensions of Man? (2nd Ed.,1964)",
+    "tags": []
+  },
+  {
+    "content": "Technology is an inherent democratizer. Because of the evolution of hardware and software, you’re able to scale up almost anything you can think up. … We’ll have to see if in our lifetime that means that everybody has more or less tools that are of equal power.",
+    "category": "Technology",
+    "author": "Sergey Brin",
+    "source": "Speech",
+    "reference": "UC Berkeley, 'Search Engines, Technology, and Business (3 Oct 2005)",
+    "tags": []
   }
 ]
 

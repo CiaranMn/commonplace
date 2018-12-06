@@ -9,7 +9,7 @@ export default resultsReducer = (state = [blankEntry], action) => {
 
   switch (action.type) {
     case 'UPDATE_RESULTS':
-      return action.results.length !== 0 ? action.results : [blankEntry]
+      return action.results.length !== 0 ? [...action.results] : [blankEntry]
     case 'ADD_RESULTS':
       return [...action.results, ...state]
     case 'REPLACE_RESULT':

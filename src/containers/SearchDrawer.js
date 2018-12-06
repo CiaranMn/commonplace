@@ -46,10 +46,11 @@ class SearchDrawer extends React.Component {
     // check for focus to avoid quick browse being triggered by new 
     // authors/tags/sources being added with update to entries
     if (this.props.navigation.state.isDrawerOpen) {
-    let results = realm.objectForPrimaryKey(type, value).entries
-    this.props.updateResults(results, { [type]: value } )
-    this.props.navigation.navigate('Home')
-    this.clearAndClose()
+      let results = realm.objectForPrimaryKey(type, value).entries
+      this.props.updateResults(results, { [type]: value} )
+      this.props.updateQuery
+      this.props.navigation.navigate('Home')
+      this.clearAndClose()
     }
   }
 

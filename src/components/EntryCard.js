@@ -61,7 +61,9 @@ const EntryCard = ({
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0.5}
-                onPress={() => editEntry(entry)}>
+                onPress={() => editEntry(entry)}
+                style={{marginLeft: 25}}
+              >
                 <Icon
                   ios={"pencil"}
                   android={"pencil"}
@@ -69,7 +71,6 @@ const EntryCard = ({
                   style={{
                     color: bodyTextColor,
                     fontSize: 25,
-                    marginLeft: 30
                   }} />
               </TouchableOpacity>
             </View>

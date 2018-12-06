@@ -1,5 +1,6 @@
-export default updateResults = results => 
+export default updateResults = (results, query=false) => 
   ({
     type: 'UPDATE_RESULTS', 
-    results 
+    results,
+    query
   })
