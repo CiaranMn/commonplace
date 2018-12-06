@@ -3,6 +3,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { createAppContainer } from 'react-navigation'
 import { Root } from 'native-base'
+import SplashScreen from 'react-native-splash-screen'
 
 import DrawerNavigator from './src/navigators/DrawerNavigator'
 import rootReducer from './src/reducers'
@@ -34,6 +35,10 @@ export const store = createStore(
 const AppContainer = createAppContainer(DrawerNavigator)
 
 export class App extends React.Component {
+
+  componentDidMount() {
+    SplashScreen.hide()
+  }
 
   render() {
 

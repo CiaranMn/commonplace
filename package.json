@@ -20,6 +20,7 @@
     "react-native-fs": "^2.12.1",
     "react-native-gesture-handler": "^1.0.9",
     "react-native-image-picker": "^0.27.1",
+    "react-native-splash-screen": "^3.1.1",
     "react-native-swiper": "git://github.com/CiaranMn/react-native-swiper.git",
     "react-native-tags": "^1.7.0",
     "react-native-voice": "^0.2.6",
