@@ -64,7 +64,7 @@ class AddOrEditEntry extends React.Component {
     const entry = this.props.navigation.getParam('entry', false)
     this.state = {
       content: entry.content || '',
-      category: entry.category ? entry.category.name : '',
+      category: entry.category ? entry.category.name : 'Quote',
       date: entry.date 
             ? 
             moment(entry.date).format('DD-MM-YYYY')
@@ -127,7 +127,7 @@ class AddOrEditEntry extends React.Component {
       source: newSource ? newSourceText : source,
       reference,
       tags
-    }, entry ? entry.id : false
+    }, !!entry
     )
     this.resetAndGoBack()
   }
@@ -142,7 +142,7 @@ class AddOrEditEntry extends React.Component {
   clearForm = () => {
     this.setState({
       content: '',
-      category: '',
+      category: 'Quote',
       date: moment().format('DD-MM-YYYY'),
       entry: false,
       newCategory: false,

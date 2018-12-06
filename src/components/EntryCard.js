@@ -36,7 +36,7 @@ const EntryCard = ({
     <View style={[styles.home, { backgroundColor: bodyBackgroundColor }]}>
       <Card style={styles.card}>
         <View style={styles.cardHeader}>
-            <View style={{width: "80%"}}>
+            <View style={{width: "70%"}}>
               <Text style={{color: bodyTextColor, fontWeight: 'bold', fontSize: 15}}>
                 {entry.author ? entry.author.name : 'Unknown'}
               </Text>
@@ -44,6 +44,8 @@ const EntryCard = ({
                 {entry.source ? entry.source.name : '(Unsourced)'}
               </Text>
             </View>
+
+          {entry.id !== 404 &&
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity 
                 activeOpacity={0.5}
@@ -67,13 +69,14 @@ const EntryCard = ({
                   style={{
                     color: bodyTextColor,
                     fontSize: 25,
-                    marginLeft: 15
+                    marginLeft: 30
                   }} />
               </TouchableOpacity>
             </View>
+          }
+
         </View>
 
-          
         <View style={styles.cardBody}>
           <View
             style={{
@@ -101,11 +104,10 @@ const EntryCard = ({
               marginBottom: 10,
               fontFamily: 'Poppins'
             }}>
-            {entry.content}
+              {entry.content}
             </Text>
           </ScrollView>
         </View>
-
 
         <View style={styles.cardFooter}>
           <View style={{
@@ -187,7 +189,7 @@ const styles = StyleSheet.create({
     borderLeftColor: 'grey',
     borderTopColor: 'grey',
     borderRadius: 10,
-    marginLeft: Dimensions.get('screen').width * 0.05
+    marginLeft: width * 0.05
   },
   cardHeader: {
     flex: 1,

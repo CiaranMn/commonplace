@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native'
 
-export const borderColor = "#cbcbcb"
-
 export const themes = {
   green: {
     primaryColor: '#3C8C90',
@@ -65,17 +63,22 @@ export const themes = {
   // }
 }
 
+export const borderColor = "#cbcbcb"
+
 export const globalStyles = StyleSheet.create({
+  formItem: {
+    width: "100%",
+    marginRight: 0,
+    marginLeft: 0,
+    marginBottom: 5,
+    borderColor: 'transparent',
+  },
   input: {
     borderRadius: 8,
     borderWidth: 1,
     borderColor,
     backgroundColor: '#fff',
     width: "75%"
-  },
-  note: {
-    fontSize: 12,
-    color: borderColor
   },
   selectInput: {
     justifyContent: 'center',
@@ -88,28 +91,17 @@ export const globalStyles = StyleSheet.create({
     color: 'black',
     padding: 6,
   },
-  button: {
-    borderRadius: 6,
-    borderWidth: 2,
-    width: "40%"
-  },
   disabledInput: {
     backgroundColor: "#E1E1E1",
     color: 'grey'
   },
+  note: {
+    fontSize: 12,
+    color: borderColor
+  },
   label: {
     fontSize: 15,
     fontWeight: 'bold'
-  },
-  inputText: {
-    fontSize: 14
-  },
-  formItem: {
-    width: "100%",
-    marginRight: 0,
-    marginLeft: 0,
-    marginBottom: 5,
-    borderColor: 'transparent',
   },
   alignRight: {
     flexDirection: 'row',

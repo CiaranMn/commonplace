@@ -89,62 +89,75 @@ export default class Entry extends Realm.Object {
   static createOrUpdate(object, update = false, imported = false) {
     const now = new Date()
     let entry
-    realm.write(() => {
-      entry = realm.create('Entry', {
-        id:
-          (update || imported) && object.id ?
-            object.id
-            : cuid(),
-        content:
-          object.content,
-        author:
-          realm.create('Author', { name: object.author || 'Unknown'}, true),
-        category:
-          realm.create('Category', { name: object.category || "Quote" }, true),
-        source:
-          object.source ?
-            realm.create('Source', { name: object.source }, true)
-            : null,
-        reference:
-          object.reference || null,
-        date:
-          object.date ?
-            imported ?
-              object.date : this.stringToDate(object.date)
-            : now,
-        dateCreated:
-          object.dateCreated ?
-            imported ?
-              object.dateCreated : this.stringToDate (object.dateCreated)
-            : now,
-        dateModified:
-          imported && object.dateModified ?
-            object.dateModified
-            : now
-      }, !!update || imported)
+    try {
+      realm.write(() => {
+        entry = realm.create('Entry', {
+          id:
+            (update || imported) && object.id ?
+              object.id
+              : cuid(),
+          content:
+            object.content,
+          author:
+            realm.create('Author', { name: object.author || 'Unknown'}, true),
+          category:
+            realm.create('Category', { name: object.category || "Quote" }, true),
+          source:
+            object.source ?
+              realm.create('Source', { name: object.source }, true)
+              : null,
+          reference:
+            object.reference || null,
+          date:
+            object.date ?
+              imported ?
+                object.date 
+                : this.stringToDate(object.date)
+              : now,
+          dateCreated:
+            object.dateCreated ?
+              imported ?
+                object.dateCreated 
+                : this.stringToDate (object.dateCreated)
+              : now,
+          dateModified:
+            imported && object.dateModified ?
+              object.dateModified
+              : now
+        }, update || imported)
 
-      if (object.tags) {
-        let tags = imported ? object.tags.split(',') : object.tags
-        entry.tags = tags.map(tag => {
-          let name = tag[0].toUpperCase() + tag.slice(1)
-          return realm.create('Tag', { name }, true)
-        })
-      }
-    })
-    return entry
+        if (object.tags) {
+          let tags = imported ? object.tags.split(',') : object.tags
+          entry.tags = tags.map(tag => {
+            let name = tag[0].toUpperCase() + tag.slice(1)
+            return realm.create('Tag', { name }, true)
+          })
+        }
+      })
+      return entry
+    } catch (error) {
+        showToast('Error saving entry - ' + err, 'danger')
+    }
   }
 
   static createOrUpdateWithAlerts(object, update = false) {
     try {
       let entry = this.createOrUpdate(object, update)
       showToast(update ? "Entry updated" : "Entry added", "success")
-      !update && store.dispatch({
-        type: "ADD_RESULTS",
-        results: [entry]
-      })
+      if (update) {
+        store.dispatch({ 
+          type: 'REPLACE_RESULT',
+          replacement: entry 
+        })
+      } else { 
+        store.dispatch({
+          type: "ADD_RESULTS",
+          results: [entry]
+        })
+      } 
       this.updateLists()
     } catch (error) {
-      showToast(`${error}`, "danger")
+      showToast('Error saving entry - ' + err, 'danger')
     }
   }
 
@@ -159,7 +172,10 @@ export default class Entry extends Realm.Object {
         }
       }
 
-      // TODO - ALSO CHECK TAGS and SOURCE FOR DELETION
+      // TODO - ALSO CHECK TAGS and SOURCE FOR DELETION IF THEY 
+      // NO LONGER HAVE ANY ENTRIES ASSOCIATED WITH THEM.
+      // POSSIBLY GIVE USER OPTION TO TURN OFF THIS AGGRESSIVE CLEANING
+      // - BUT WOULD MEAN POSSIBILITY OF SEARCHING TAGS ETC WITH NO ENTRIES
       realm.delete(realm.objectForPrimaryKey('Entry', entry.id))
       showToast(
         authorDeleted ? "Entry and author deleted" : "Entry deleted",

@@ -4,7 +4,7 @@ export default queryReducer = (state = false, action) => {
     case 'UPDATE_RESULTS':
       return action.query ? action.query : state
     case 'CLEAR_QUERY':
-      return {}
+      return false
     default:
       return state
   }

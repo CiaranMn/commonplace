@@ -52,11 +52,11 @@ export const exportFile = async () => {
   let contents = Papa.unparse(writeCsv())
 
   RNFS.writeFile(path, contents, 'utf8')
-    .then((success) => {
-      alert('FILE WRITTEN!')
+    .then(success => {
+      showToast('File successfully written', 'success')
     })
-    .catch((err) => {
-      alert(err.message);
+    .catch(err => {
+      alert('Error writing file - ' + err);
     })
 
 }
