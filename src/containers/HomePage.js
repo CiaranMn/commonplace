@@ -35,7 +35,6 @@ class HomePage extends React.Component {
 
   state = {
     modalVisible: false,
-    index: 0
   }
 
   constructor(props) {
@@ -134,7 +133,7 @@ class HomePage extends React.Component {
 
     const renderPagination = (index, total, context) => {
       return <View style={[styles.paginationStyle, { backgroundColor: secondaryColor, borderColor }]}>
-        <TouchableOpacity activeOpacity={0.7} onPress={this.toggleModal}>
+        <TouchableOpacity activeOpacity={0.7} onPress={() => {} }>
           <Text style={[styles.paginationText, { color: bodyTextColor }]}>
             {index + 1} of {total}
           </Text>
@@ -152,8 +151,9 @@ class HomePage extends React.Component {
       <Swiper
         ref={"_Swiper"}
         horizontal={true}
-        loadMinimal
-        loadMinimalSize={1}
+        // loadMinimal  - loadMinimal causing hanging when data array is changed
+        // while on an index beyond loadMinimal size (e.g. be viewing record 5 or 10 with loadMinimal 1, data state changes, changes back to index 1 and hangs). Issue around line 712-721 of module
+        // loadMinimalSize={1}
         showsPagination={true}
         renderPagination={renderPagination}
         showsButtons={showNavButtons}
