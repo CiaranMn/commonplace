@@ -149,11 +149,10 @@ class HomePage extends React.Component {
 
     return (
       <Swiper
-        ref={"_Swiper"}
+        key={this.props.results.length}
         horizontal={true}
-        // loadMinimal  - loadMinimal causing hanging when data array is changed
-        // while on an index beyond loadMinimal size (e.g. be viewing record 5 or 10 with loadMinimal 1, data state changes, changes back to index 1 and hangs). Issue around line 712-721 of module
-        // loadMinimalSize={1}
+        loadMinimal
+        loadMinimalSize={2}
         showsPagination={true}
         renderPagination={renderPagination}
         showsButtons={showNavButtons}
