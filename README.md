@@ -1,13 +1,15 @@
 # Commonplace Book
 
 ## What?
-A robust, searchable digital repository for the ideas, quotes and maxims that strike you as you go about your life, wherever they come from.
+### A robust, searchable digital repository for the ideas, quotes and maxims that strike you as you go about your life, wherever they come from.
 
 Quickly capture, categorise, and tag passages from books, articles, essays, or your own imagination.
 
 Search your commonplace book by category, tags, author, source, and/or date, to find the perfect entry to inspire an essay, speech, article, or your personal philosophy.
 
 Build a reference of ideas that matter most to you - captured in a way that makes sense to you.
+
+<img src="demo/swipe.gif">
 
 ##
 ## Why?
@@ -32,9 +34,12 @@ The Commonplace Book app is tailored specifically to easily capturing and compre
 - Tested and tweaked to accommodate a range of screen sizes.
 - Navigation by stack, tab, drawer, swipe.
 
+<img src="demo/screenshot.png"> 
+
 ##
 ## Features
 #### Fully customisable to allow users to structure and search entries as best suits them. UX enhancements to make entry capture and retrieval intuitive and frictionless.
+
 - Entry capture through Voice-to-Text, Image-to-Text, Photo-to-Text.
 - Users can capture entries with date, category, author, source, reference, tags.
 - Quick and easy editing of entries.
@@ -43,6 +48,15 @@ The Commonplace Book app is tailored specifically to easily capturing and compre
 - Customisations include colour theme, search behaviour, main entry font size, default entries displayed on home page.
 - Import and export data to CSV (currently Android with iOS coming soon).
 
+
+<img src="demo/themes.gif">  <img src="demo/screenshot-2.png" height="700" width="auto"> 
+
+
+##
+## TODO
+- Add import/export db feature to iOS. 
+- Image/camera to text on the add/edit form currently relying on Google Cloud Vision API - not suitable for production in the current implementation as the API key shouldn't be bundled with the app. Need (a) a backend to handle requests, or (b) standalone OCR library bundled with the app (big).
+- Search form could be improved - when you select e.g. a category, it could adjust the other filter lists to only show other author/sources/tags in that category, progressively narrowing the options. Currently all options are available no matter which are already selected.
 
 
 
