@@ -59,7 +59,7 @@ The Commonplace Book app is tailored specifically to easily capturing and compre
 - with an Android emulator **runninng**, run `npm run android`
 
 *OR*
-- follow instructions [https://facebook.github.io/react-native/docs/running-on-device][here] to run on an actual device
+- follow instructions [here](https://facebook.github.io/react-native/docs/running-on-device) to run on an actual device
 
 #### N.B. app will currently seed the database on each load - you can remove this in App.js, line 17
 
