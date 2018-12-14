@@ -1,9 +1,9 @@
 import { Entry, realm } from '../models/realm'
 
-// Deletes database before seeding!
-realm.write(() => {
-  realm.deleteAll()
-})
+// To delete database before seeding uncomment:
+// realm.write(() => {
+//   realm.deleteAll()
+// })
 
 const entries = [
   {

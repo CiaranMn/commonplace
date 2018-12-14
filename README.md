@@ -52,6 +52,17 @@ The Commonplace Book app is tailored specifically to easily capturing and compre
 <img src="demo/themes.gif">  <img src="demo/screenshot-2.png" height="700" width="auto"> 
 
 
+## Try it out!
+- with XCode **installed**, run `npm run ios` to run on an iOS emulator
+
+*OR*
+- with an Android emulator **runninng**, run `npm run android`
+
+*OR*
+- follow instructions [https://facebook.github.io/react-native/docs/running-on-device][here] to run on an actual device
+
+#### N.B. app will currently seed the database on each load - you can remove this in App.js, line 17
+
 ##
 ## TODO
 - Add import/export db feature to iOS. 

@@ -12,7 +12,8 @@ import getSettings from './src/lib/getSettings'
 
 getSettings()
 
-// N.B. seeds file wipes database before seeeding!
+// N.B. seed files does currently do NOT wipe database before seeding
+// uncomment lines in seeds file to change this behaviour
 require('./src/db/seeds')
 
 const authors = Author.getAuthors()
