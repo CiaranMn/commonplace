@@ -133,7 +133,7 @@ class HomePage extends React.Component {
 
     const renderPagination = (index, total, context) => {
       return <View style={[styles.paginationStyle, { backgroundColor: secondaryColor, borderColor }]}>
-        <TouchableOpacity activeOpacity={0.7} onPress={() => {} }>
+        <TouchableOpacity activeOpacity={0.7} onPress={() => this.setState({modalVisible: true})}>
           <Text style={[styles.paginationText, { color: bodyTextColor }]}>
             {index + 1} of {total}
           </Text>
@@ -141,7 +141,7 @@ class HomePage extends React.Component {
             visible={this.state.modalVisible}
             closeModal={this.toggleModal}
             bodyTextColor={bodyTextColor}
-            query={query}
+            query={query || true}
           />
         </TouchableOpacity>
       </View>

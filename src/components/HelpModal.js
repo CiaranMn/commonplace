@@ -8,7 +8,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 
+import {globalStyles} from '../config/globalStyles'
 const {width, height} = Dimensions.get('screen')
+
 
 export default HelpModal = ({ 
   visible, 
@@ -26,8 +28,8 @@ export default HelpModal = ({
   >
     <View style={{ 
       marginTop: height * 0.4,
-      marginLeft: width * 0.25,
-      width: width * 0.5,
+      marginLeft: width * 0.2,
+      width: width * 0.6,
       backgroundColor: "white",
       borderColor: bodyTextColor,
       borderWidth: 1,
@@ -39,25 +41,49 @@ export default HelpModal = ({
       ?
         <>
           <Text style={{marginBottom: 5}}>
-            You searched for entries containing: '{query.content}'
+            <Text style={globalStyles.label}>
+              Results containing:
+            </Text> {
+              query.content && query.content.length > 0 
+              ? ' ' + query.content 
+              : ' anything'
+              }
+          </Text>
+          <Text style={{ marginBottom: 5 }}>
+            <Text style={globalStyles.label}>
+              Dated from:
+            </Text>
+            {query.dateFrom ? ' ' + query.dateFrom : ' any'}
           </Text>
           <Text style={{ marginBottom: 5}}>
-            Dated from: {query.dateFrom ? query.dateFrom : 'any'}
-          </Text>
-          <Text style={{ marginBottom: 5}}>
-            Dated to: {query.dateFrom ? query.dateFrom : 'any'}
-          </Text>
-          <Text style={{marginBottom: 5}}>
-            Category: {query.category ? query.category.name : 'any'}
+            <Text style={globalStyles.label}>
+              Dated to: 
+            </Text>
+            {query.dateFrom ? ' ' + query.dateFrom : ' any'}
           </Text>
           <Text style={{marginBottom: 5}}>
-            Author: {query.author ? query.author.name : 'any'}
+            <Text style={globalStyles.label}>
+              Category: 
+            </Text>
+            {query.category ? ' ' + query.category : ' any'}
           </Text>
           <Text style={{marginBottom: 5}}>
-            Source: {query.source ? query.source.name : 'any'}
+            <Text style={globalStyles.label}>
+              Author:
+            </Text>
+            {query.author ? ' ' + query.author: ' any'}
           </Text>
           <Text style={{marginBottom: 5}}>
-            Tag: {query.tag ? query.tag.name : 'any'}
+            <Text style={globalStyles.label}>
+              Source:
+            </Text>
+            {query.source ? ' ' + query.source : ' any'}
+          </Text>
+          <Text style={{marginBottom: 5}}>
+            <Text style={globalStyles.label}>
+             Tag:
+            </Text>
+            {query.tag ? ' ' + query.tag : ' any'}
           </Text>
         </>
       :

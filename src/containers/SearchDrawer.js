@@ -14,7 +14,6 @@ import {
   Item,
   Label,
 } from 'native-base'
-import {NavigationEvents} from 'react-navigation'
 
 import {Entry, realm} from '../models/realm'
 import updateResults from '../actions/updateResults'
@@ -47,7 +46,11 @@ class SearchDrawer extends React.Component {
     // authors/tags/sources being added with update to entries
     if (this.props.navigation.state.isDrawerOpen) {
       let results = realm.objectForPrimaryKey(type, value).entries
-      this.props.updateResults(results, { [type]: value} )
+      let fieldKey = type.toLowerCase()
+      this.props.updateResults(
+        results, 
+        {[fieldKey]: value}   // include query to show in help modal
+      )
       this.props.updateQuery
       this.props.navigation.navigate('Home')
       this.clearAndClose()
